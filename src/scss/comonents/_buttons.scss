@@ -1,0 +1,36 @@
+@import "../variables";
+
+.button {
+    display: inline-block;
+    border: 1px solid transparent;
+    padding: 15px 60px;
+    border-radius: 5px;
+    text-align: center;
+    font-family: $font-stack;
+    font-size: 20px;
+    line-height: 24px;
+    cursor: pointer;
+    max-width: 210px;
+    white-space: nowrap;
+
+    &:active {
+        transform: translateY(2px);
+    }
+
+    
+    &--fill {
+        background: $siberian-blue;
+        color: $white;
+
+        &:hover {
+            background: lighten($siberian-blue, 5);
+        }
+    }
+
+    &--outline {
+        background: $white;
+        border: 1px solid $siberian-blue;
+        color: $siberian-blue;
+        padding: 12px 40px;
+    }
+}

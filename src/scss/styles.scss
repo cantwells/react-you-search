@@ -1,0 +1,19 @@
+@import "./variables";
+@import "./lib/normalize";
+@import "./fonts";
+@import "./comonents/all";
+
+body, html {
+    font-family: $font-stack;
+    font-size: 16px;
+    line-height: 24px;
+    position: relative;
+
+    @media screen and (max-width: 768px){
+        font-size: 14px;
+    }
+
+    @media screen and (max-width: 576px) { 
+        font-size: 12px;
+    }
+}

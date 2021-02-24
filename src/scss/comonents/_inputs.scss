@@ -1,0 +1,108 @@
+@import "../variables";
+
+.form {
+    input {
+        // width: 100%;
+        padding: 12px 40px 12px 15px;
+        border: 1px solid rgba(23, 23, 25, 0.2);
+        border-radius: 5px;
+        font-size: 20px;
+        line-height: 24px;
+        color: $dark;
+        font-family: $font-stack;
+
+        &[type="password"] {
+            font-family: "fontello";
+            font-style: normal;
+            font-weight: normal;
+            // speak: none;
+        
+            /* For safety - reset parent styles, that can break glyph codes*/
+            font-variant: normal;
+            text-transform: none;
+        
+            /* Font smoothing. That was taken from TWBS */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            /* Uncomment for 3D effect */
+            /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+        
+            /* add spacing to better separate each image */
+            letter-spacing: 2px;
+        }
+
+        &:focus {
+            border-color: $siberian-blue;
+            background: $white;
+        }
+
+        &:focus + i svg path {
+            stroke: #1390E5;
+        }
+
+        
+    }
+    .united-search {
+        display: flex;
+        justify-content: center;
+        position: relative;
+        input.search {
+            padding: 14px 15px;
+            border-radius: 5px 0 0 5px;
+            width: 50%;
+            font-size: 20px;
+            line-height: 24px;
+    
+            &::placeholder {
+                opacity: 0.3;
+            }
+            &__result {
+                width: 84%;
+                &:focus {
+                    border-color: rgba(23, 23, 25, 0.2);
+                    background: $white;
+                }
+            }
+        }
+        button {
+            border-radius: 0 5px 5px 0;
+            margin-left: -5px;
+            position: relative;
+            width: 16%;
+            min-width: 70px;
+        }
+
+        @media screen and (max-width: 992px ) {                
+                input.search {
+                    font-size: 16px;
+                    padding: 10px 15px;
+                }
+                button {
+                    font-size: 16px;
+                    padding: 10px 30px;
+                }
+        }
+
+        @media screen and (max-width: 768px ) {                
+                input.search {
+                    font-size: 14px;
+                    padding: 5px 10px;
+                }
+                button {
+                    font-size: 14px;
+                    padding: 5px 15px;
+                }
+        }
+
+        @media screen and (max-width: 576px ) {                
+                input.search {
+                    font-size: 12px;
+                    padding: 5px 10px;
+                }
+                button {
+                    font-size: 12px;
+                    padding: 5px 15px;
+                }
+        }
+    }
+}

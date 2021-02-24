@@ -1,0 +1,39 @@
+@font-face {
+    font-family: 'Roboto';
+    src: url('../fonts/Roboto-Regular.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('../fonts/Roboto-Medium.ttf');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('../fonts/Roboto-Bold.ttf');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'PT Sans';
+    src: url('../fonts/PTSans-Regular.ttf');
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* Use the css below to change the password input symbol */
+@font-face {
+	font-family: 'fontello';
+	src: url('../fonts/fontello.eot?61889877');
+	src: url('../fonts/fontello.eot?61889877#iefix') format('embedded-opentype'),
+        url('../fonts/fontello.woff2?61889877') format('woff2'),
+        url('../fonts/fontello.woff?61889877') format('woff'),
+        url('../fonts/fontello.ttf?61889877') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
