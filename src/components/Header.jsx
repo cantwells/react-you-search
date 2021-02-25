@@ -1,4 +1,13 @@
+import React from 'react';
+
 const Header = () => {
+    const menus = ['Поиск', 'Избранное'];
+    const [activeMenu, setActiveMenu] = React.useState(0);
+
+    const onChangeMenu = idx => {
+        setActiveMenu(idx);
+    } 
+
     return (
         <header className="header">
             <nav className="nav">
@@ -15,8 +24,10 @@ const Header = () => {
                     </defs>
                 </svg>
                 <ul className="menu">
-                    <li className="active">Поиск</li>
-                    <li>Избранное</li>
+                    { menus.map( (item, idx) => <li key={item + idx} 
+                                                    className={ idx === activeMenu ? 'active' : ''} 
+                                                    onClick={() => onChangeMenu(idx)}
+                                                >{item}</li> )}
                 </ul>
             </nav>
             <div className="logout">Выйти</div>
