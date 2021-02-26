@@ -5,58 +5,58 @@
 .favourits {
     margin-top: 30px / 1040px * 100%;
     background: $white;
-}
 
-.item {
-    display: flex;
-    padding: 14px 20px;
-    line-height: 20px;
-    font-weight: 500;
-    cursor: pointer;
-    &__title {
-        width: 85%;
-        @media screen and (max-width: 992px) {
-            width: 80%;
-        }
-        @media screen and (max-width: 768px) {
-            width: 75%;
-        }
-        @media screen and (max-width: 576px) {
-            width: 60%;
-        }
-    }
-    &__edit {
-        width: 15%;
+    .item {
         display: flex;
-        justify-content: space-between;
-        opacity: 0;
-        transition: opacity 0.5s;
-        @media screen and (max-width: 992px) {
-            width: 20%;
-        }
-        @media screen and (max-width: 768px) {
-            width: 25%;
-        }
-        @media screen and (max-width: 576px) {
-            width: 40%;
-        }
-        span {
-            display: inline-block;
-            color: $siberian-blue;
-            font-size: 0.875rem;
-            line-height: 20px;
-            font-weight: 400;
-            cursor: pointer;
-            &.item__edit-del {
-                color: #FF0000;
+        padding: 14px 20px;
+        line-height: 20px;
+        font-weight: 500;
+        cursor: pointer;
+        &__title {
+            width: 85%;
+            @media screen and (max-width: 992px) {
+                width: 80%;
+            }
+            @media screen and (max-width: 768px) {
+                width: 75%;
+            }
+            @media screen and (max-width: 576px) {
+                width: 60%;
             }
         }
-
-    }
-    &:hover {
-        background: #F1F1F1;
-    }
-    &:hover &__edit{
-        opacity: 1;
+        &__edit {
+            width: 15%;
+            display: flex;
+            justify-content: space-between;
+            opacity: 0;
+            transition: opacity 0.5s;
+            @media screen and (max-width: 992px) {
+                width: 20%;
+            }
+            @media screen and (max-width: 768px) {
+                width: 25%;
+            }
+            @media screen and (max-width: 576px) {
+                width: 40%;
+            }
+            span {
+                display: inline-block;
+                color: $siberian-blue;
+                font-size: 0.875rem;
+                line-height: 20px;
+                font-weight: 400;
+                cursor: pointer;
+                &.item__edit-del {
+                    color: #FF0000;
+                }
+            }
+    
+        }
+        &:hover {
+            background: #F1F1F1;
+        }
+        &:hover &__edit{
+            opacity: 1;
+        }
     }
 }
