@@ -1,7 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-const Header = () => {
-    const menus = ['Поиск', 'Избранное'];
+const menus = ['Поиск', 'Избранное'];
+const menuLink = ['/', '/favourite'];
+
+const Header = React.memo(() => {
     const [activeMenu, setActiveMenu] = React.useState(0);
 
     const onChangeMenu = idx => {
@@ -27,12 +30,12 @@ const Header = () => {
                     { menus.map( (item, idx) => <li key={item + idx} 
                                                     className={ idx === activeMenu ? 'active' : ''} 
                                                     onClick={() => onChangeMenu(idx)}
-                                                >{item}</li> )}
+                                                ><Link to={menuLink[idx]}>{item}</Link></li> )}
                 </ul>
             </nav>
             <div className="logout">Выйти</div>
         </header>
     );
-}
+});
 
 export default Header;
