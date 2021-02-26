@@ -1,9 +1,14 @@
+import { Route } from 'react-router-dom';
 import './App.css';
-import { Search } from './components';
+import { Favourite, Header, Search } from './components';
 
 function App() {
   return (
-    <Search/>
+    <div className="wrapper">
+      <Header/>
+      <Route exact path="/" component={Search}/>
+      <Route exact path="/favourite" component={Favourite}/>
+    </div>
   );
 }
 
