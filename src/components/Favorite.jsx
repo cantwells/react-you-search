@@ -1,27 +1,27 @@
 const Favourite = () => {
     return (
-        <main class="main main-favourits">
+        <main className="main main-favourits">
             <h2>Избранное</h2>
-            <div class="favourits">
-                <div class="item">
-                    <div class="item__title">чем кормить кота</div>
-                    <div class="item__edit">
+            <div className="favourits">
+                <div className="item">
+                    <div className="item__title">чем кормить кота</div>
+                    <div className="item__edit">
                         <span>Изменить</span>
-                        <span class="item__edit-del">Удалить</span>
+                        <span className="item__edit-del">Удалить</span>
                     </div>
                 </div>
-                <div class="item">
-                    <div class="item__title">видео</div>
-                    <div class="item__edit">
+                <div className="item">
+                    <div className="item__title">видео</div>
+                    <div className="item__edit">
                         <span>Изменить</span>
-                        <span class="item__edit-del">Удалить</span>
+                        <span className="item__edit-del">Удалить</span>
                     </div>
                 </div>
-                <div class="item">
-                    <div class="item__title">bad bunny</div>
-                    <div class="item__edit">
+                <div className="item">
+                    <div className="item__title">bad bunny</div>
+                    <div className="item__edit">
                         <span>Изменить</span>
-                        <span class="item__edit-del">Удалить</span>
+                        <span className="item__edit-del">Удалить</span>
                     </div>
                 </div>
             </div>
