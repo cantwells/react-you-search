@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Search = () => {
+const SearchOld = () => {
     return (        
         <main className="content">
             <h1>Поиск видео</h1>
@@ -14,4 +14,4 @@ const Search = () => {
     );
 }
 
-export default Search;
+export default SearchOld;
