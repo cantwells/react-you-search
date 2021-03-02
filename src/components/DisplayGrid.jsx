@@ -1,6 +1,7 @@
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
+import React from 'react';
 
-const DisplayGrid = ({ items }) => {
+const DisplayGrid = React.memo( ({ items }) => {
     return (
         <div className="result__clips-grid">
             {
@@ -26,7 +27,7 @@ const DisplayGrid = ({ items }) => {
             }
         </div>
     );
-}
+});
 
 DisplayGrid.propTypes = {
     items: PropTypes.arrayOf( PropTypes.object )

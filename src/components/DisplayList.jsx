@@ -1,6 +1,7 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 
-const DisplayList = ({items}) => {
+const DisplayList = React.memo( ({items}) => {
     return (
         <div className="result__clips-list">
             {
@@ -29,7 +30,7 @@ const DisplayList = ({items}) => {
             }
         </div>
     )
-}
+});
 
 DisplayList.propTypes = {
     items: PropTypes.arrayOf( PropTypes.object )
