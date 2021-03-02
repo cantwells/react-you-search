@@ -4,3 +4,4 @@ export { default as Favourite } from './Favorite';
 export { default as Button } from './Button';
 export { default as DisplayGrid } from './DisplayGrid';
 export { default as DisplayList } from './DisplayList';
+export { default as ModalAddFavourite } from './ModalAddFavourite';
