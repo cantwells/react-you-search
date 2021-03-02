@@ -11,14 +11,17 @@ const DisplayList = ({items}) => {
                                 <img src={snippet.thumbnails.medium.url} alt="video-screen"/>
                             </div>
                             <div className="item__info">
-                                <a href={`https://www.youtube.com/watch?v=${id.videoId}`} target="_blank" rel="noreferrer">
+                                <a className="item__link-title" href={`https://www.youtube.com/watch?v=${id.videoId}`} target="_blank" rel="noreferrer">
                                     <div className="item__title">
                                         {snippet.title.replace(/&quot;/g, '"')}
                                     </div>
                                 </a>
-                                <div className="item__descr">
-                                    {snippet.description.replace(/&quot;/g, '"')}
-                                </div>
+                                <a className="item__link-channel" href={`https://www.youtube.com/channel/${snippet.channelId}`} target="_blank" rel="noreferrer">
+                                    ya
+                                    <div className="item__channel">
+                                        {snippet.channelTitle.replace(/&quot;/g, '"')}
+                                    </div>
+                                </a>
                             </div>
                         </div>
                     )
