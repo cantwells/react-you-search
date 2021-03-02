@@ -90,10 +90,10 @@
         a {
             display: block;
             transition: all 0.3s;
-
-            &:hover {
-                color: #606060;
-            }
+        }
+        &__link-title:hover {
+            // color: #606060;
+            color: $siberian-blue;
         }
         
         &__title {
@@ -106,15 +106,21 @@
                 overflow: hidden;
             }
         }
-        &__descr {
-            color: rgba(23, 23, 25, 0.3);
-            cursor: default;
+        &__channel {
+            // color: rgba(23, 23, 25, 0.3);
+            color: #171719;
+            opacity: 0.3;
+            transition: all 0.3s;
             &.trim {
                 width: 210px;
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
             }
+        }
+
+        &__channel:hover {
+            opacity: 0.8;
         }
     }
 

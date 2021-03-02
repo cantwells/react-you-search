@@ -33,4 +33,11 @@
         color: $siberian-blue;
         padding: 12px 40px;
     }
+
+    &--search {
+        &:active {
+            transform: translateY(0px);
+            background: darken($siberian-blue, 15);
+        }
+    }
 }
