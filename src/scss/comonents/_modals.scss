@@ -65,7 +65,7 @@
                 margin-right: 5px;
             }
         }
-        input {
+        input, select {
             padding: 12px 15px;
             background: #FAFAFA;
             border: 1px solid rgba(23, 23, 25, 0.1);
@@ -79,6 +79,16 @@
                 color: #BBBBBB;
             }
         }
+
+        select {
+            -moz-appearance: none;
+            -webkit-appearance: none;
+            appearance: none;
+            background-image: url("../../assets/img/arrow.svg"); 
+            background-position: right 1rem top 50%, 0 0; 
+            background-repeat: no-repeat;
+        }
+
         .form__input {
             margin-bottom: 24px / 430px * 100%;
             position: relative;
@@ -184,6 +194,23 @@
         position: absolute;
         width: 1px;
         white-space: nowrap;
+    }
+
+    .input-range {
+        width: 70%;
+
+        &__track {
+            background: #EAEAEA;
+        }
+
+        &__track--active {
+            background: #1390E5;
+        }
+    
+        &__slider {
+            background: $white;
+            border: 2px solid #1390E5;
+        }
     }
 
 }
