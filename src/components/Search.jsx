@@ -95,7 +95,7 @@ const Search = React.memo(() => {
                     </main>
                 : <EmptySearch value={value} onSubmit={handleSubmit} onGetValue={handleGetValue} />
             }
-            <ModalAddFavourite isShow={modalShow} onModalShow={handleModalShow} />
+            <ModalAddFavourite isShow={modalShow} onModalShow={handleModalShow} query={query} />
         </>
     )
 });
