@@ -7,15 +7,6 @@ import { fetchVideosByQuery, setIsGrid } from '../redux/slices/searchSlice';
 
 let query = '';
 
-// const map = {
-//     '&amp;': '&',
-//     '&lt;': '<',
-//     '&gt;': '>',
-//     '&quot;': '"',
-//     '&#x27;': "'",
-//     '&#x2F;': "/",
-// };
-
 const Search = React.memo(() => {
     //Получение данных из поисковой строки
     const [ value, setValue ] = React.useState("");
@@ -46,7 +37,7 @@ const Search = React.memo(() => {
         setModalShow(isShow);
     }
 
-    console.log(videos.length);
+    // console.log(videos.length);
     return (
         <>
             {(videos.length) 
@@ -104,7 +95,7 @@ const Search = React.memo(() => {
                     </main>
                 : <EmptySearch value={value} onSubmit={handleSubmit} onGetValue={handleGetValue} />
             }
-            {/* <ModalAddFavourite isShow={modalShow} onModalShow={handleModalShow} /> */}
+            <ModalAddFavourite isShow={modalShow} onModalShow={handleModalShow} />
         </>
     )
 });

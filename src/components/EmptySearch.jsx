@@ -3,7 +3,6 @@ import { Button } from '.';
 import PropTypes from 'prop-types';
 
 const EmptySearch = React.memo(({ onSubmit, value, onGetValue }) => {
-    console.log('value',value);
     return (        
         <main className="content">
             <h1>Поиск видео</h1>

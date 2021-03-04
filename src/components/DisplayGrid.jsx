@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import helper from '../helper';
 
 const DisplayGrid = React.memo( ({ items }) => {
     return (
@@ -13,12 +14,14 @@ const DisplayGrid = React.memo( ({ items }) => {
                             </div>
                             <a className="item__link-title" href={`https://www.youtube.com/watch?v=${id.videoId}`} target="_blank" rel="noreferrer">
                                 <div className="item__title trims" title={snippet.title.replace(/&quot;/g, '"')}>
-                                    {snippet.title.replace(/&quot;/g, '"')}
+                                    {/* {snippet.title.replace(/&quot;/g, '"')} */}
+                                    {helper.asynizer(snippet.title)}
                                 </div>
                             </a>
                             <a className="item__link-channel" href={`https://www.youtube.com/channel/${snippet.channelId}`} target="_blank" rel="noreferrer">
                                 <div className="item__channel trim">
-                                    {snippet.channelTitle.replace(/&quot;/g, '"')}
+                                    {/* {snippet.channelTitle.replace(/&quot;/g, '"')} */}
+                                    {helper.asynizer(snippet.channelTitle)}
                                 </div>
                             </a>
                         </div>

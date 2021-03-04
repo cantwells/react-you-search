@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import helper from '../helper';
 
 const DisplayList = React.memo( ({items}) => {
     return (
@@ -14,13 +15,15 @@ const DisplayList = React.memo( ({items}) => {
                             <div className="item__info">
                                 <a className="item__link-title" href={`https://www.youtube.com/watch?v=${id.videoId}`} target="_blank" rel="noreferrer">
                                     <div className="item__title">
-                                        {snippet.title.replace(/&quot;/g, '"')}
+                                        {/* {snippet.title.replace(/&quot;/g, '"')} */}
+                                        { helper.asynizer(snippet.title) }
                                     </div>
                                 </a>
                                 <a className="item__link-channel" href={`https://www.youtube.com/channel/${snippet.channelId}`} target="_blank" rel="noreferrer">
                                     ya
                                     <div className="item__channel">
-                                        {snippet.channelTitle.replace(/&quot;/g, '"')}
+                                        {/* {snippet.channelTitle.replace(/&quot;/g, '"')} */}
+                                        { helper.asynizer(snippet.channelTitle)}
                                     </div>
                                 </a>
                             </div>
