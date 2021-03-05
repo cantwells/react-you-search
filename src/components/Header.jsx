@@ -1,11 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const menus = ['Поиск', 'Избранное'];
 const menuLink = ['/', '/favourite'];
 
 const Header = React.memo(() => {
-    const [activeMenu, setActiveMenu] = React.useState(0);
+    const location = useLocation();
+
+    const initIdx = menuLink.indexOf(location.pathname);
+    const [activeMenu, setActiveMenu] = React.useState(initIdx);
 
     const onChangeMenu = idx => {
         setActiveMenu(idx);
