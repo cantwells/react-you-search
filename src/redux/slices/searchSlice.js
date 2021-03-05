@@ -21,6 +21,9 @@ const searchSlice = createSlice({
     reducers: {
         setIsGrid( state, action ){
             state.isGrid = action.payload;
+        },
+        resetVideos( state, action ){
+            state.videos = [];
         }
     },
     extraReducers: {
@@ -31,5 +34,5 @@ const searchSlice = createSlice({
         }
     }
 })
-export const { setIsGrid } = searchSlice.actions;
+export const { setIsGrid, resetVideos } = searchSlice.actions;
 export default searchSlice.reducer; 
