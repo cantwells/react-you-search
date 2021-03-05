@@ -7,7 +7,7 @@ import helper from '../helper';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 
-const ModalAddFavourite = React.memo( ({ isShow, onModalShow, query }) => {
+const ModalAddFavourite = React.memo( ({ isShow, onModalShow, query, onAddFavourite }) => {
 
     const schema = Yup.object().shape({
         title: Yup
@@ -22,11 +22,14 @@ const ModalAddFavourite = React.memo( ({ isShow, onModalShow, query }) => {
 
     const [ value, setValue ] = React.useState(25);
 
-    const onSubmit = data => console.log(data);
-
     const closeModal = () => {
         formRef.current.reset();
         onModalShow(false);
+    }
+
+    const onSubmit = data => {
+        onAddFavourite(data);
+        closeModal();
     }
 
     const formRef = React.useRef();
@@ -37,8 +40,6 @@ const ModalAddFavourite = React.memo( ({ isShow, onModalShow, query }) => {
     }
 
     const handleFakeChange = () => {}
-
-    console.log(errors);
 
     return (
         <div className={ cn('modal', 'overlay', { 'visuallyhidden': !isShow }) }>
@@ -79,7 +80,10 @@ const ModalAddFavourite = React.memo( ({ isShow, onModalShow, query }) => {
 });
 
 ModalAddFavourite.propTypes = {
-    isShow: PropTypes.bool.isRequired
+    isShow: PropTypes.bool.isRequired,
+    query: PropTypes.string.isRequired,
+    onModalShow: PropTypes.func.isRequired,
+    onAddFavourite: PropTypes.func.isRequired
 }
 
 export default ModalAddFavourite;
