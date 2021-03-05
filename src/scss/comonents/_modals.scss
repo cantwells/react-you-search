@@ -65,7 +65,7 @@
                 margin-right: 5px;
             }
         }
-        input, select {
+        %form-elements {
             padding: 12px 15px;
             background: #FAFAFA;
             border: 1px solid rgba(23, 23, 25, 0.1);
@@ -80,7 +80,12 @@
             }
         }
 
+        input {
+            @extend %form-elements;
+        }
+
         select {
+            @extend %form-elements;
             -moz-appearance: none;
             -webkit-appearance: none;
             appearance: none;
@@ -98,6 +103,12 @@
                 top: 60%;
                 right: 20px;
                 cursor: pointer;
+            }
+
+            &_error {
+                text-align: center;
+                color: red;
+                padding-top: 10px;
             }
         }
     }
