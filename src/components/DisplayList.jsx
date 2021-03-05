@@ -20,7 +20,6 @@ const DisplayList = React.memo( ({items}) => {
                                     </div>
                                 </a>
                                 <a className="item__link-channel" href={`https://www.youtube.com/channel/${snippet.channelId}`} target="_blank" rel="noreferrer">
-                                    ya
                                     <div className="item__channel">
                                         {/* {snippet.channelTitle.replace(/&quot;/g, '"')} */}
                                         { helper.asynizer(snippet.channelTitle)}
