@@ -8,7 +8,7 @@ const Favourite = () => {
             <div className="favourits">
                 {
                     items.map( item => (
-                        <div className="item">
+                        <div className="item" key={ `${item.request}-${new Date().getTime()}` }>
                             <div className="item__title">{item.request}</div>
                             <div className="item__edit">
                                 <span>Изменить</span>
