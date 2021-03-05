@@ -1,8 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import searchSlice from './slices/searchSlice'
+import favouriteSlice from './slices/favouriteSlice';
+import searchSlice from './slices/searchSlice';
 
 export default configureStore({
     reducer: {
-        search: searchSlice
+        search: searchSlice,
+        favourites: favouriteSlice
     }
 })
