@@ -52,11 +52,14 @@
             }
     
         }
-        &:hover {
-            background: #F1F1F1;
-        }
-        &:hover &__edit{
-            opacity: 1;
-        }
+    }
+}
+
+.item {
+    &:hover {
+        background: #F1F1F1;
+    }
+    &:hover &__edit {
+        opacity: 1;
     }
 }
