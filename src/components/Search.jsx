@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { Button, DisplayGrid, DisplayList, EmptySearch, ModalAddFavourite } from '.';
 import cn from 'classnames';
 import { fetchVideosByQuery, setIsGrid } from '../redux/slices/searchSlice';
+import { addFavourite } from '../redux/slices/favouriteSlice';
 
 let query = '';
 
@@ -37,7 +38,10 @@ const Search = React.memo(() => {
         setModalShow(isShow);
     }
 
-    // console.log(videos.length);
+    const handleAddFavourite = ( data ) => {
+        dispatch(addFavourite(data));
+    }
+
     return (
         <>
             {(videos.length) 
@@ -95,7 +99,11 @@ const Search = React.memo(() => {
                     </main>
                 : <EmptySearch value={value} onSubmit={handleSubmit} onGetValue={handleGetValue} />
             }
-            <ModalAddFavourite isShow={modalShow} onModalShow={handleModalShow} query={query} />
+            <ModalAddFavourite isShow={modalShow} 
+                                onModalShow={handleModalShow} 
+                                query={query}
+                                onAddFavourite={handleAddFavourite}
+                            />
         </>
     )
 });
