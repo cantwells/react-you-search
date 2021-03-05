@@ -2,42 +2,75 @@ import React from 'react'
 import cn from 'classnames';
 import PropTypes from 'prop-types'
 import { Button } from '.';
+import { useForm } from 'react-hook-form';
+import helper from '../helper';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as Yup from 'yup';
 
-const ModalAddFavourite = React.memo( ({ isShow, onModalShow }) => {
+const ModalAddFavourite = React.memo( ({ isShow, onModalShow, query }) => {
+
+    const schema = Yup.object().shape({
+        title: Yup
+                .string()
+                .required('Обязательное поле!')
+                .min(3, 'Слишком короткое')
+    })
+
+    const { register, errors, handleSubmit } = useForm({
+        resolver: yupResolver(schema)
+    });
+
+    const [ value, setValue ] = React.useState(25);
+
+    const onSubmit = data => console.log(data);
 
     const closeModal = () => {
+        formRef.current.reset();
         onModalShow(false);
     }
+
+    const formRef = React.useRef();
+    
+    const handleChange = (event) => {
+        setValue(event.target.value);
+        helper.multyColorRange(event);
+    }
+
+    const handleFakeChange = () => {}
+
+    console.log(errors);
+
     return (
         <div className={ cn('modal', 'overlay', { 'visuallyhidden': !isShow }) }>
             <div className="modal__window">
                 <h4>Сохранить запрос</h4>
-                <form>
+                <form onSubmit={ handleSubmit(onSubmit) } ref={formRef} >
                     <div className="form__input">
                         <p>Запрос</p>
-                        <input type="text" name="request" />
+                        <input type="text" name="request" value={query} onChange={handleFakeChange} ref={register} />
                     </div>
                     <div className="form__input">
                         <p><i>*</i>Название</p>
-                        <input type="text" name="title" placeholder="Укажите название" />
+                        <input type="text" name="title" placeholder="Укажите название" ref={register} />
+                        { <p className="form__input_error">{errors.title?.message}</p> }
                     </div>
                     <div className="form__input">
-                        <p>Сортировать по</p>
-                        <input type="text" name="sortby" placeholder="Без сортировки" />
-                        <svg width="10" height="5" viewBox="0 0 10 5" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M4.29289 4.29289L0.853553 0.853553C0.538571 0.538571 0.761654 0 1.20711 0H8.79289C9.23835 0 9.46143 0.53857 9.14645 0.853553L5.70711 4.29289C5.31658 4.68342 4.68342 4.68342 4.29289 4.29289Z" fill="#D1D1D1"/>
-                        </svg>
+                        <select name="sort" ref={register}>
+                            <option value="">Сортировать по</option>
+                            <option value="name">По имени</option>
+                            <option value="date">По дате</option>
+                        </select>
                     </div>
                     <div className="form__input">
                         <p>Максимальное количество</p>
                         <div className="range-block">
-                            <input type="range" min="0" max="50" value="25" step="1" className="ranger" />
-                            <span className="range-result">25</span>
+                            <input name="ranger" type="range" min="0" max="50" value={value} step="1" className="ranger" onChange={handleChange} ref={register} />
+                            <span className="range-result">{value}</span>    
                         </div>
                     </div>
                     <div className="button-block">
-                        <Button className="button--outline" onClick={closeModal}>Не сохранять</Button>
-                        <Button className="button--fill">Сохранять</Button>
+                        <Button type="button" className="button--outline" onClick={closeModal}>Не сохранять</Button>
+                        <Button role="submit" className="button--fill">Сохранять</Button>
                     </div>
                 </form>
             </div>
