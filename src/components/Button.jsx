@@ -1,6 +1,7 @@
+import React from 'react'
 import cn from 'classnames';
 
-const Button = ({ children, className, onClick, role, type }) => {
+const Button = React.memo(({ children, className, onClick, role, type }) => {
     return (
         <button className={cn('button', {[className]: className })} 
                 role={role} 
@@ -10,6 +11,6 @@ const Button = ({ children, className, onClick, role, type }) => {
             {children}
         </button>
     )
-}
+});
 
 export default Button;
