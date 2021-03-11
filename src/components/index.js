@@ -5,4 +5,5 @@ export { default as Button } from './Button';
 export { default as DisplayGrid } from './DisplayGrid';
 export { default as DisplayList } from './DisplayList';
 export { default as ModalAddFavourite } from './ModalAddFavourite';
+export { default as ModalEditFavourite } from './ModalEditFavourite';
 export { default as EmptySearch } from './EmptySearch';
