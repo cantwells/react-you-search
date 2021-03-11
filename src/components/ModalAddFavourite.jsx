@@ -7,6 +7,7 @@ import helper from '../helper';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 
+let idNum = 0;
 const ModalAddFavourite = React.memo( ({ isShow, onModalShow, query, onAddFavourite }) => {
 
     const schema = Yup.object().shape({
@@ -28,6 +29,8 @@ const ModalAddFavourite = React.memo( ({ isShow, onModalShow, query, onAddFavour
     }
 
     const onSubmit = data => {
+        data.id = idNum++;
+        console.log(data);
         onAddFavourite(data);
         closeModal();
     }
@@ -48,7 +51,7 @@ const ModalAddFavourite = React.memo( ({ isShow, onModalShow, query, onAddFavour
                 <form onSubmit={ handleSubmit(onSubmit) } ref={formRef} >
                     <div className="form__input">
                         <p>Запрос</p>
-                        <input type="text" name="request" value={query} onChange={handleFakeChange} ref={register} />
+                        <input className="input-disabled" type="text" name="request" value={query} onChange={handleFakeChange} ref={register}/>
                     </div>
                     <div className="form__input">
                         <p><i>*</i>Название</p>
