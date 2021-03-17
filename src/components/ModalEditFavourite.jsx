@@ -7,11 +7,10 @@ import helper from '../helper';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 
-
-const ModalEditFavourite = React.memo( ({ isShow, onModalShow, favouriteItem, onEditFavourite }) => {
+const ModalEditFavourite = React.memo( ({ onModalShow, favouriteItem, onEditFavourite }) => {
 
     const schema = Yup.object().shape({
-        name: Yup
+        request: Yup
                 .string()
                 .required('Обязательное поле!'),
         title: Yup
@@ -24,45 +23,54 @@ const ModalEditFavourite = React.memo( ({ isShow, onModalShow, favouriteItem, on
         resolver: yupResolver(schema)
     });
 
-    const range = favouriteItem.ranger ? favouriteItem.ranger : 25
-    const [ value, setValue ] = React.useState(range);
-
+    const [ value, setValue ] = React.useState(favouriteItem.ranger);
+    
+    const formRef = React.useRef();
+    
     const closeModal = () => {
         formRef.current.reset();
         onModalShow(false);
     }
 
     const onSubmit = data => {
-        // data.id = idNum++;
+        data.id = favouriteItem.id;
         console.log(data);
-        // onEditFavourite(data);
-        // closeModal();
+        onEditFavourite(data);
+        closeModal();
     }
-
-    const formRef = React.useRef();
     
     const handleChange = (event) => {
         setValue(event.target.value);
         helper.multyColorRange(event);
     }
 
+    const [selected, setSelected] = React.useState('')
+
+    const setChoose = (event) => setSelected( event.target.value );
+
     return (
-        <div className={ cn('modal', 'overlay', { 'visuallyhidden': !isShow }) }>
+        <div className={ cn('modal', 'overlay') }>
             <div className="modal__window">
                 <h4>Изменить запрос</h4>
                 <form onSubmit={ handleSubmit(onSubmit) } ref={formRef} >
                     <div className="form__input">
                         <p>Запрос</p>
-                        <input type="text" name="request" defaultValue={favouriteItem?.request} ref={register} />
+                        <input type="text" name="request" defaultValue={favouriteItem.request} ref={register} />
+                        { <p className="form__input_error">{errors.request?.message}</p> }
                     </div>
                     <div className="form__input">
                         <p><i>*</i>Название</p>
-                        <input type="text" name="title" defaultValue={favouriteItem?.title} placeholder="Укажите название" ref={register} />
+                        <input type="text" name="title" defaultValue={favouriteItem.title} placeholder="Укажите название" ref={register} />
                         { <p className="form__input_error">{errors.title?.message}</p> }
                     </div>
                     <div className="form__input">
-                        <select name="sort" ref={register}>
-                            <option value="">Сортировать по</option>
+                        <select name="sort" 
+                                ref={register}
+                                defaultValue=""
+                                onChange={setChoose}
+                                className={cn({ 'selected': !!selected})}
+                            >
+                            <option className="input-disabled" disabled value="">Сортировать по</option>
                             <option value="name">По имени</option>
                             <option value="date">По дате</option>
                         </select>
@@ -76,7 +84,7 @@ const ModalEditFavourite = React.memo( ({ isShow, onModalShow, favouriteItem, on
                     </div>
                     <div className="button-block">
                         <Button type="button" className="button--outline" onClick={closeModal}>Не сохранять</Button>
-                        <Button role="submit" className="button--fill">Сохранять</Button>
+                        <Button type="submit" className="button--fill">Сохранять</Button>
                     </div>
                 </form>
             </div>
@@ -85,7 +93,6 @@ const ModalEditFavourite = React.memo( ({ isShow, onModalShow, favouriteItem, on
 });
 
 ModalEditFavourite.propTypes = {
-    isShow: PropTypes.bool.isRequired,
     favouriteItem: PropTypes.object,
     onModalShow: PropTypes.func.isRequired,
     onEditFavourite: PropTypes.func.isRequired
