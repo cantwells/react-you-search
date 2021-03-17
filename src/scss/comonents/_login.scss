@@ -6,6 +6,10 @@
     max-width: 510px;
     margin: 9.22% auto 0;
     padding: 2.65% 5.8% 4%;
+
+    button:last-child {
+        margin-top: 54px / 334px * 100%;
+    }
 }
 
 .login {
@@ -23,13 +27,8 @@
     }
 }
 
-.form {
-    
+.form {    
     text-align: center;
-
-    button:last-child {
-        margin-top: 54px / 334px * 100%;
-    }
 
     &__field {
         position: relative;
@@ -61,7 +60,6 @@
     right: 15px;
     width: 24px;
     height: 24px;
-    // background-image: url("../img/show.svg");
     cursor: pointer;
     
     &:focus {
