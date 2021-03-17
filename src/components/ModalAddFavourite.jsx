@@ -8,7 +8,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 
 let idNum = 0;
-const ModalAddFavourite = React.memo( ({ isShow, onModalShow, query, onAddFavourite }) => {
+const ModalAddFavourite = ({ onModalShow, query, onAddFavourite }) => {
 
     const schema = Yup.object().shape({
         title: Yup
@@ -42,10 +42,14 @@ const ModalAddFavourite = React.memo( ({ isShow, onModalShow, query, onAddFavour
         helper.multyColorRange(event);
     }
 
+    const [selected, setSelected] = React.useState('')
+
+    const setChoose = (event) => setSelected( event.target.value );
+
     const handleFakeChange = () => {}
 
     return (
-        <div className={ cn('modal', 'overlay', { 'visuallyhidden': !isShow }) }>
+        <div className={ cn('modal', 'overlay') }>
             <div className="modal__window">
                 <h4>Сохранить запрос</h4>
                 <form onSubmit={ handleSubmit(onSubmit) } ref={formRef} >
@@ -59,8 +63,12 @@ const ModalAddFavourite = React.memo( ({ isShow, onModalShow, query, onAddFavour
                         { <p className="form__input_error">{errors.title?.message}</p> }
                     </div>
                     <div className="form__input">
-                        <select name="sort" ref={register}>
-                            <option value="">Сортировать по</option>
+                        <select name="sort" 
+                                ref={register} 
+                                defaultValue=""
+                                onChange={setChoose}
+                                className={cn({ 'selected': !!selected})} >
+                            <option disabled value="">Сортировать по</option>
                             <option value="name">По имени</option>
                             <option value="date">По дате</option>
                         </select>
@@ -68,7 +76,7 @@ const ModalAddFavourite = React.memo( ({ isShow, onModalShow, query, onAddFavour
                     <div className="form__input">
                         <p>Максимальное количество</p>
                         <div className="range-block">
-                            <input name="ranger" type="range" min="0" max="50" value={value} step="1" className="ranger" onChange={handleChange} ref={register} />
+                            <input name="ranger" type="range" min="0" max="50" value={value} step="1" className="ranger"  onChange={handleChange} ref={register} />
                             <span className="range-result">{value}</span>    
                         </div>
                     </div>
@@ -80,10 +88,9 @@ const ModalAddFavourite = React.memo( ({ isShow, onModalShow, query, onAddFavour
             </div>
         </div>
     )
-});
+}
 
 ModalAddFavourite.propTypes = {
-    isShow: PropTypes.bool.isRequired,
     query: PropTypes.string.isRequired,
     onModalShow: PropTypes.func.isRequired,
     onAddFavourite: PropTypes.func.isRequired
