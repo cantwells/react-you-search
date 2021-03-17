@@ -4,69 +4,77 @@
 
 .wrapper-login {
     max-width: 510px;
-    // margin: 140px auto;
-    margin: 9.22% auto;
+    margin: 9.22% auto 0;
     padding: 2.65% 5.8% 4%;
-
-    .login {
-        &__logo {
-            text-align: center;
-            margin-bottom: 31px / 334px * 100%;
-        }
-
-        &__title {
-            text-align: center;
-            font-weight: 500;
-            font-size: 18px;
-            line-height: 28px;
-            margin-bottom: 20px / 334px * 100%;
-        }
-    }
-
-    .form {
-
-        input{
-            width: 100%;
-        }
-        button:last-child {
-            margin-top: 54px / 334px * 100%;
-        }
-        text-align: center;
-
-        &__field {
-            position: relative;
-            text-align: left;
-
-            i {
-                position: absolute;
-                top: 35px;
-                right: 15px;
-                width: 24px;
-                height: 24px;
-                // background-image: url("../img/show.svg");
-                cursor: pointer;
-                
-                svg {
-                    display: none;
-                    
-                    &.visible {
-                        display: inline;
-                    }
-        
-                    &:hover {
-                        path {
-                            stroke: #1390E5;
-                        }
-                    }
-                } 
-            }
-
-        }
-
-        label {
-            line-height: 22px;
-            color: rgba(23, 23, 25, 0.3);
-        }
-    }
-
 }
+
+.login {
+    &__logo {
+        text-align: center;
+        margin-bottom: 31px / 334px * 100%;
+    }
+
+    &__title {
+        text-align: center;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 28px;
+        margin-bottom: 20px / 334px * 100%;
+    }
+}
+
+.form {
+    
+    text-align: center;
+
+    button:last-child {
+        margin-top: 54px / 334px * 100%;
+    }
+
+    &__field {
+        position: relative;
+        text-align: left;
+
+        .form__input{
+            width: 100%;
+    
+            &:focus {
+                background: $light-bg;
+            }
+        }
+        p {
+            text-align: center;
+            color: red;
+        }
+        
+    }
+    
+    label {
+        line-height: 22px;
+        color: rgba(23, 23, 25, 0.3);
+    }
+}
+
+.icon {
+    position: absolute;
+    top: 35px;
+    right: 15px;
+    width: 24px;
+    height: 24px;
+    // background-image: url("../img/show.svg");
+    cursor: pointer;
+    
+    &:focus {
+        &__img {
+            path {
+                stroke: #1390E5;
+            }
+        }
+    }
+
+    &__img {
+        display: inline;
+    
+    }
+}
+

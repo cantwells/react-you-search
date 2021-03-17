@@ -44,6 +44,10 @@
         @media screen and (max-width: 576px){
             right: 23%
         }
+
+        &--fill {
+            fill: $light-blue;
+        }
     }
 }
 

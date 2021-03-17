@@ -93,6 +93,16 @@
             background-position: right 1rem top 50%, 0 0; 
             background-repeat: no-repeat;
             color: #BBBBBB;
+            &.selected{
+                color: $dark;
+            }
+            option {
+                color: $dark;
+                &:first-child {
+                    color: #BBBBBB;
+                }
+            }
+
         }
 
 
