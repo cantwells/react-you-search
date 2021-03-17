@@ -7,3 +7,5 @@ export { default as DisplayList } from './DisplayList';
 export { default as ModalAddFavourite } from './ModalAddFavourite';
 export { default as ModalEditFavourite } from './ModalEditFavourite';
 export { default as EmptySearch } from './EmptySearch';
+export { default as Login } from './Login';
+export { default as Nomatch } from './Nomatch';
