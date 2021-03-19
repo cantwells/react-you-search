@@ -30,7 +30,6 @@ const ModalAddFavourite = ({ onModalShow, query, onAddFavourite }) => {
 
     const onSubmit = data => {
         data.id = idNum++;
-        console.log(data);
         onAddFavourite(data);
         closeModal();
     }
