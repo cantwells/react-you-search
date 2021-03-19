@@ -30,17 +30,17 @@
         opacity: 0;
         transition: all 0.5s;
 
-        &:before {
-            content: "";
-            width: 0;
-            height: 0;
-            bottom: 100%;
-            right: 45%;
-            position: absolute;
-            border-bottom: 26px solid transparent;
-            border-left: 13px solid transparent;
-            border-right: 13px solid transparent;
-        }
+        // &:before {
+        //     content: "";
+        //     width: 0;
+        //     height: 0;
+        //     bottom: 100%;
+        //     right: 45%;
+        //     position: absolute;
+        //     border-bottom: 26px solid transparent;
+        //     border-left: 13px solid transparent;
+        //     border-right: 13px solid transparent;
+        // }
 
         p {
             margin-bottom: 15px;
