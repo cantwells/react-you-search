@@ -1,7 +1,10 @@
+import { Link } from "react-router-dom"
+
 const Nomatch = () => {
     return (
-        <div>
-            <h1>404! The page not found!</h1>
+        <div className="wrapper wrapper__nomatch">
+            <h1>404! Страница не найдена!</h1>
+            <p className="gohome"><Link to="/">Вернуться на главную</Link></p>
         </div>
     )
 }
