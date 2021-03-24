@@ -1,18 +1,26 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
+import { logOut } from '../redux/slices/loginSlice';
 
 const menus = ['Поиск', 'Избранное'];
 const menuLink = ['/', '/favourite'];
 
 const Header = React.memo(() => {
     const location = useLocation();
+    const dispatch = useDispatch();
 
     const initIdx = menuLink.indexOf(location.pathname);
     const [activeMenu, setActiveMenu] = React.useState(initIdx);
 
     const onChangeMenu = idx => {
         setActiveMenu(idx);
+    }
+    
+    const handleLogOut = () => {
+        dispatch( logOut() );
     } 
+
     
     if ( menuLink.includes( location.pathname ) ){
         return (
@@ -37,7 +45,7 @@ const Header = React.memo(() => {
                                                     ><Link to={menuLink[idx]}>{item}</Link></li> )}
                     </ul>
                 </nav>
-                <div className="logout">Выйти</div>
+                <div className="logout" onClick={() => handleLogOut()}>Выйти</div>
             </header>
         );
     }else{
