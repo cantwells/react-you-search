@@ -6,14 +6,14 @@ const loginSlice = createSlice({
         isAuthorized: false,
     },
     reducers: {
-        setIsGrid( state, action ){
-            state.isGrid = action.payload;
+        setAuthorized( state, action ){
+            state.isAuthorized = action.payload.isAuthorized;
         },
-        resetVideos( state, action ){
-            state.videos = [];
+        logOut(state, action){
+            state.isAuthorized = false;
         }
     },
 })
 
-export const { setIsGrid, resetVideos } = loginSlice.actions;
+export const { setAuthorized, logOut } = loginSlice.actions;
 export default loginSlice.reducer;
