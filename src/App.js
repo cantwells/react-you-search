@@ -1,18 +1,26 @@
-import { Route, Switch } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import './App.css';
 import { Favourite, Header, Nomatch, Search } from './components';
 
 function App() {
-  return (
-    <div className="wrapper">
-      <Header/>
-      <Switch>
-        <Route exact path="/" component={Search}/>
-        <Route path="/favourite" component={Favourite}/>
-        <Route path="*" component={Nomatch}/>
-      </Switch>
-    </div>
-  );
+
+  const { isAuthorized } = useSelector( ({login}) => login );
+
+  if(isAuthorized) {
+      return (
+        <div className="wrapper">
+          <Header/>
+          <Switch>
+            <Route exact path="/" component={Search}/>
+            <Route path="/favourite" component={Favourite}/>
+            <Route path="*" component={Nomatch}/>
+          </Switch>
+        </div>
+      );
+  }else {
+    return <Redirect to="/login" />
+  }
 }
 
 export default App;
