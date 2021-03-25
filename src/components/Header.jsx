@@ -18,7 +18,7 @@ const Header = React.memo(() => {
     }
     
     const handleLogOut = () => {
-        dispatch( logOut() );
+        dispatch(logOut());
     } 
 
     
