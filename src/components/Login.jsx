@@ -2,6 +2,9 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchLogin, resetError } from '../redux/slices/loginSlice';
+import { Redirect } from 'react-router';
 
 const schema = yup.object().shape({
     username: yup.string().required('Обязательное поле'),
@@ -9,19 +12,43 @@ const schema = yup.object().shape({
 })
 
 const Login = React.memo(() => {
-    const { register, handleSubmit, errors } = useForm({ resolver: yupResolver(schema) })
+    //получение нужных инструментов из react-hook-form
+    const { register, handleSubmit, errors, reset, setError } = useForm({ resolver: yupResolver(schema) })
+    const dispatch = useDispatch();
+    //получаем данные из стейта
+    const {isAuthorized, error} = useSelector(({login}) => login);
 
     const [ isHide, setIsHide ] = React.useState(true);
-
+    //получаем ссылку на элемент иконки
     const icon = React.useRef();
+    //Обработчик изменения вида иконки в ипуте пароля
     const toggleVisiable = () => {
         icon.current.previousElementSibling.focus();
         setIsHide( !isHide );
     }
 
-    const onSubmit = (data) => console.log(data);
+    console.log(errors);
+    React.useEffect( () => {
+        //При появления ошибок из стейта, добавляем их в форму react-hook-form
+        if(error){
+            setError("password", {
+                type: "manual",
+                message: error 
+            });
+        }
+        //При очистке ошибок из react-hook-form обнуляем ошибки в стейте
+        if( !errors.length ){
+            dispatch( resetError() );
+        }
+    }, [error, setError, errors, dispatch])
 
-
+    //обработка отправки почты
+    const onSubmit = (data) => {
+        dispatch( fetchLogin(data) );
+        reset();
+    }
+    //перенаправляем в корень в случае правильно авторизации
+    if(isAuthorized) return <Redirect to="/" />
     return (
         <div className="wrapper-login">
             <div className="login__logo">
