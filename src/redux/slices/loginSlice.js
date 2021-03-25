@@ -5,7 +5,6 @@ export const fetchLogin = createAsyncThunk(
     'login/fetchLogin',
     async ( credentials, thunkAPI ) => {
         try{
-            console.log(thunkAPI.getState());
             return await helper.logIn(credentials);
         }catch(err){
             throw err;
