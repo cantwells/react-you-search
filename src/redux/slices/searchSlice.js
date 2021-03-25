@@ -22,8 +22,9 @@ const searchSlice = createSlice({
         setIsGrid( state, action ){
             state.isGrid = action.payload;
         },
-        resetVideos( state, action ){
+        resetVideos( state ){
             state.videos = [];
+            state.totalResult = 0;
         }
     },
     extraReducers: {
