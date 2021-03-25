@@ -27,7 +27,6 @@ const Login = React.memo(() => {
         setIsHide( !isHide );
     }
 
-    console.log(errors);
     React.useEffect( () => {
         //При появления ошибок из стейта, добавляем их в форму react-hook-form
         if(error){
@@ -35,12 +34,10 @@ const Login = React.memo(() => {
                 type: "manual",
                 message: error 
             });
-        }
-        //При очистке ошибок из react-hook-form обнуляем ошибки в стейте
-        if( !errors.length ){
+            //после чего очищаем error из стейта
             dispatch( resetError() );
         }
-    }, [error, setError, errors, dispatch])
+    }, [error, setError, dispatch])
 
     //обработка отправки почты
     const onSubmit = (data) => {
