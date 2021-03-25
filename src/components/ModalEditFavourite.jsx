@@ -8,7 +8,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 
 const ModalEditFavourite = React.memo( ({ onModalShow, favouriteItem, onEditFavourite }) => {
-
+    //Схема для валидации полей формы
     const schema = Yup.object().shape({
         request: Yup
                 .string()
@@ -18,34 +18,35 @@ const ModalEditFavourite = React.memo( ({ onModalShow, favouriteItem, onEditFavo
                 .required('Обязательное поле!')
                 .min(3, 'Слишком короткое')
     })
-
+    //нужные инструменты из react-hook-form
     const { register, errors, handleSubmit } = useForm({
         resolver: yupResolver(schema)
     });
-
-    const [ value, setValue ] = React.useState(favouriteItem.ranger);
     
+    //получаем реф на форму
     const formRef = React.useRef();
     
+    //функция скрытия модального окна
     const closeModal = () => {
         formRef.current.reset();
         onModalShow(false);
     }
-
+    //Функция обработки при отправке формы
     const onSubmit = data => {
         data.id = favouriteItem.id;
-        console.log(data);
         onEditFavourite(data);
         closeModal();
     }
-    
+    //Состояние для значения инпута range
+    const [ value, setValue ] = React.useState(favouriteItem.ranger);
+    //Обработчик изменения инпута range
     const handleChange = (event) => {
         setValue(event.target.value);
+        //функция для правильного отображения стилей
         helper.multyColorRange(event);
     }
-
+    //состояние для выбора option в выпадающем списке
     const [selected, setSelected] = React.useState('')
-
     const setChoose = (event) => setSelected( event.target.value );
 
     return (
@@ -66,7 +67,7 @@ const ModalEditFavourite = React.memo( ({ onModalShow, favouriteItem, onEditFavo
                     <div className="form__input">
                         <select name="sort" 
                                 ref={register}
-                                defaultValue=""
+                                value={selected || favouriteItem.sort}
                                 onChange={setChoose}
                                 className={cn({ 'selected': !!selected})}
                             >
