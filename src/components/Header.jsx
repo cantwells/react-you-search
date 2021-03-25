@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import { logOut } from '../redux/slices/loginSlice';
+import { resetVideos } from '../redux/slices/searchSlice';
 
 const menus = ['Поиск', 'Избранное'];
 const menuLink = ['/', '/favourite'];
@@ -19,9 +20,9 @@ const Header = React.memo(() => {
     
     const handleLogOut = () => {
         dispatch(logOut());
+        dispatch(resetVideos());
     } 
 
-    
     if ( menuLink.includes( location.pathname ) ){
         return (
             <header className="header">
