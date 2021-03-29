@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
+import browserStorage from '../browserStorage';
 import { logOut } from '../redux/slices/loginSlice';
 import { resetVideos } from '../redux/slices/searchSlice';
 
@@ -21,6 +22,7 @@ const Header = React.memo(() => {
     const handleLogOut = () => {
         dispatch(logOut());
         dispatch(resetVideos());
+        browserStorage.removeData();
     } 
 
     if ( menuLink.includes( location.pathname ) ){
