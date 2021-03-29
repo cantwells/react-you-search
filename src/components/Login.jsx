@@ -40,8 +40,8 @@ const Login = React.memo(() => {
     }, [error, setError, dispatch])
 
     //обработка отправки почты
-    const onSubmit = (data) => {
-        dispatch( fetchLogin(data) );
+    const onSubmit = (credentials ) => {
+        dispatch( fetchLogin(credentials) );
         reset();
     }
     //перенаправляем в корень в случае правильно авторизации
