@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { Button, DisplayGrid, DisplayList, EmptySearch, ModalAddFavourite, ModalFavourite } from '.';
+import { Button, DisplayGrid, DisplayList, EmptySearch, ModalAddFavourite, InfoModal } from '.';
 import cn from 'classnames';
 import { fetchVideosByQuery, setIsGrid } from '../redux/slices/searchSlice';
 import { addFavourite } from '../redux/slices/favouriteSlice';
@@ -19,7 +19,7 @@ const Search = React.memo(() => {
     //отображать/скрывать модалку с формой
     const [ modalShow, setModalShow ] = React.useState(false);
     //отображать/скрывать модалку для перехода на избранное
-    const [ modalFavourite, setModalFavourite ] = React.useState(false);
+    const [ isShowInfoModal, setIsShowInfoModal ] = React.useState(false);
 
     //проверка вводимой строки на наличие в избранном
     const isFavourite = () => {
@@ -32,15 +32,15 @@ const Search = React.memo(() => {
     }
 
     //Обработчик для отображения модального окна с преходом в избранное
-    const handleModalFavourite = () => {
-        setModalFavourite(true);
+    const handleShowInfoModal = () => {
+        setIsShowInfoModal(true);
         // clearModal = setTimeout(() => {
         //     setModalFavourite(false);
         // }, 3600)
     }
     //Обработчик для скрытия модального окна
-    const handleHideFavourite = () => {
-        setModalFavourite(false);
+    const handleHideInfoModal = () => {
+        setIsShowInfoModal(false);
     };
 
     //Обработчик отправки формы в поисковой строке
@@ -57,7 +57,7 @@ const Search = React.memo(() => {
     }
     //Показывать/скрывать модальное окно
     const handleModalShow = ( isShow ) => {
-        isFavourite() ? handleModalFavourite() : setModalShow(isShow);
+        isFavourite() ? handleShowInfoModal() : setModalShow(isShow);
     }
 
     //Добавление в избранное
@@ -85,7 +85,7 @@ const Search = React.memo(() => {
                                     </svg>
                                     <Button className="button--fill button--search">Найти</Button>
                                     {/* { modalFavourite && <ModalFavourite onHideFavourite={handleHideFavourite} /> } */}
-                                    {<ModalFavourite isShow={modalFavourite } onHideFavourite={handleHideFavourite} /> }
+                                    {<InfoModal isShow={isShowInfoModal} onHideModal={handleHideInfoModal} /> }
                                 </div>
                             </form>
                         </section>

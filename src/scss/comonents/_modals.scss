@@ -15,7 +15,7 @@
         justify-content: center;
     }
 
-    &__favorite_saved {
+    &__info {
         position: absolute;
         top: 90%;
         right: 7%;
@@ -38,7 +38,7 @@
             color: $siberian-blue;
             border: 1px solid $siberian-blue;
             border-radius: 5px;
-            padding: 0 5px;
+            padding: 0 6px;
         }
 
         // &:before {
