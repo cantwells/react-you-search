@@ -34,14 +34,13 @@ const Search = React.memo(() => {
     //Обработчик для отображения модального окна с преходом в избранное
     const handleModalFavourite = () => {
         setModalFavourite(true);
-        setTimeout(() => {
-            setModalFavourite(false);
-        }, 3600)
+        // clearModal = setTimeout(() => {
+        //     setModalFavourite(false);
+        // }, 3600)
     }
-
+    //Обработчик для скрытия модального окна
     const handleHideFavourite = () => {
-        console.log('stop');
-        // setModalFavourite(false);
+        setModalFavourite(false);
     };
 
     //Обработчик отправки формы в поисковой строке
