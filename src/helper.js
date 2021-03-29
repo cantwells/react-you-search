@@ -21,13 +21,15 @@ const helper = {
         const { username, password } = credentials;
         return new Promise( ( resolve, reject ) => {
             if( username === 'Admin' && password === '12345' ){
-                resolve(true);
+                resolve({username});
             }else{
                 reject("Не верный логин или пароль!");
             }
-
         })
-    }
+    },
+    utf8_to_b64: str => btoa(encodeURI(str)),
+
+    b64_to_utf8: str => decodeURI(atob(str)),
 }
 
 export default helper;
