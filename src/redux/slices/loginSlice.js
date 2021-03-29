@@ -40,7 +40,6 @@ const loginSlice = createSlice({
     },
     extraReducers: {
         [fetchLogin.fulfilled]: ( state, action ) => {
-            console.log(action);
             state.isAuthorized = true;
             state.user = action.payload;
             state.error = "";
