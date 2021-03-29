@@ -11,9 +11,12 @@ const menuLink = ['/', '/favourite'];
 const Header = React.memo(() => {
     const location = useLocation();
     const dispatch = useDispatch();
-
-    const initIdx = menuLink.indexOf(location.pathname);
-    const [activeMenu, setActiveMenu] = React.useState(initIdx);
+    
+    const [activeMenu, setActiveMenu] = React.useState('/');
+    React.useEffect(() => {
+        const initIdx = menuLink.indexOf(location.pathname);
+        setActiveMenu(initIdx)
+    }, [location.pathname])
 
     const onChangeMenu = idx => {
         setActiveMenu(idx);
