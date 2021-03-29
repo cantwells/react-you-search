@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import API from "../dal/api";
 
-//create thunk
+//thunk для получения видео с сервера
 export const fetchVideosByQuery = createAsyncThunk(
     'search/fetchVideosByQueries',
     async ( query ) => {
