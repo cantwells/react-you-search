@@ -101,7 +101,11 @@
         }
 
         input {
-            @extend %form-elements;                        
+            @extend %form-elements;
+            
+            &:read-only {
+                color: #BBBBBB;;
+            }
         }
 
         select {
