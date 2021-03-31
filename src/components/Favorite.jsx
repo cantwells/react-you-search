@@ -1,18 +1,16 @@
 import React from 'react'
 import { useDispatch, useSelector } from "react-redux";
-import { ModalEditFavourite } from '.';
+import { ModalFavourite } from '.';
 import { delFavourite, editFavourite } from "../redux/slices/favouriteSlice";
-
 
 let favouriteItem = {}
 const Favourite = () => {
-    //отображать/скрывать форму
-    const [ modalShow, setModalShow ] = React.useState(false);
+    // отображать/скрывать форму
+    const [ isModalShow, setIsModalShow ] = React.useState(false);
     
     const dispatch = useDispatch();
-    //получаем все избранные
+//     //получаем все избранные
     const items = useSelector(({favourites}) => favourites.items);
-
     //удалить избраное
     const delFavouriteByID = (id) => {
         dispatch( delFavourite({id}) );
@@ -22,12 +20,13 @@ const Favourite = () => {
     //получить избраное по id
     const getFavourite = (id) => {
         favouriteItem = items.find( item => item.id === id);
-        setModalShow(true);
+        console.log(favouriteItem);
+        setIsModalShow(true);
     }
 
     //Показывать/скрывать модальное окно
-    const handleModalShow = ( isShow ) => {
-        setModalShow(isShow);
+    const handleIsModalShow = ( isShow ) => {
+        setIsModalShow(isShow);
     }
 
     //оброботчик для изменения избраного
@@ -54,10 +53,12 @@ const Favourite = () => {
                 </div>
             </main>
             {
-                modalShow && <ModalEditFavourite onModalShow={handleModalShow}
-                        favouriteItem={favouriteItem}
-                        onEditFavourite={handleEditFavourite}
-                    />
+                isModalShow && <ModalFavourite
+                                    isAdd={false}
+                                    onIsModalShow={handleIsModalShow}
+                                    queryData={favouriteItem}
+                                    onDispatchFavourite={handleEditFavourite}
+                                />
             }
         </>
     )
