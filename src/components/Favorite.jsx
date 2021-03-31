@@ -20,7 +20,6 @@ const Favourite = () => {
     //получить избраное по id
     const getFavourite = (id) => {
         favouriteItem = items.find( item => item.id === id);
-        console.log(favouriteItem);
         setIsModalShow(true);
     }
 
