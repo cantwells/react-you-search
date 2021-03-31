@@ -122,10 +122,6 @@ const Search = React.memo(() => {
                 : <EmptySearch value={value} onSubmit={handleSubmit} onGetValue={handleGetValue} />
             }
             {
-                // modalShow && <ModalAddFavourite  onModalShow={handleModalShow} 
-                //                 query={query}
-                //                 onAddFavourite={handleAddFavourite}
-                //             />
                 modalShow && <ModalFavourite onIsModalShow={handleIsModalShow} 
                                 queryData={ {request} }
                                 onDispatchFavourite={handleAddFavourite}
