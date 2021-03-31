@@ -17,7 +17,7 @@ const favouriteSlice = createSlice({
         },
         editFavourite( state, action ){
             const index = getIndex( state.items, action.payload.id );
-            state.items[index] =action.payload;
+            state.items[index] = action.payload;
         }
     }
 })
