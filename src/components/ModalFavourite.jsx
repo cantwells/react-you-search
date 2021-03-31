@@ -7,6 +7,9 @@ import helper from '../helper';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 
+import nextId, {setPrefix} from "react-id-generator";
+setPrefix("");
+
 const ModalFavourite = React.memo( ({isAdd=true, onIsModalShow, onDispatchFavourite, queryData }) => {
     //Схема для валидации полей формы
     const schema = Yup.object().shape({
@@ -22,7 +25,6 @@ const ModalFavourite = React.memo( ({isAdd=true, onIsModalShow, onDispatchFavour
     const { register, errors, handleSubmit } = useForm({
         resolver: yupResolver(schema)
     });
-    console.log(errors);
     //получаем реф на форму
     const formRef = React.useRef();
     //функция скрытия модального окна
@@ -33,12 +35,10 @@ const ModalFavourite = React.memo( ({isAdd=true, onIsModalShow, onDispatchFavour
 
     //Функция обработки при отправке формы
     const onSubmit = data => {
-        console.log(data);
-        // data.id = favouriteItem.id;
         onDispatchFavourite(data);
         closeModal();
     }
-    
+
     //Состояние для значения инпута range
     const [ value, setValue ] = React.useState(queryData?.ranger || 25);
     //Обработчик изменения инпута range
@@ -55,6 +55,7 @@ const ModalFavourite = React.memo( ({isAdd=true, onIsModalShow, onDispatchFavour
             <div className="modal__window">
                 <h4>{isAdd ? 'Сохранить запрос' : 'Изменить запрос'}</h4>
                 <form onSubmit={ handleSubmit(onSubmit) } ref={formRef} >
+                    <input type="hidden" name="id" defaultValue={queryData?.id || nextId()}  ref={register}/>
                     <div className="form__input">
                         <p>Запрос</p>
                         {/* <input type="text" name="request" defaultValue={favouriteItem?.request} ref={register} disabled /> */}
