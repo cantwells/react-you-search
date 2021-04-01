@@ -37,7 +37,8 @@
     &--search {
         &:active {
             transform: translateY(0px);
-            background: darken($siberian-blue, 15);
+            box-shadow: 0px 0px 1px 1px $siberian-blue;
+            // background: darken($siberian-blue, 15);
         }
     }
 }
