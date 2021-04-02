@@ -64,12 +64,17 @@
                 }
             }
         }
-        button {
+        .button {
             border-radius: 0 5px 5px 0;
             margin-left: -5px;
             position: relative;
             width: 16%;
-            min-width: 70px;
+            min-width: 70px;            
+            
+            &:active {
+                transform: translateY(0);
+                box-shadow: 0px 0px 1px 1px $siberian-blue;
+            }
         }
 
         @media screen and (max-width: 992px ) {                
