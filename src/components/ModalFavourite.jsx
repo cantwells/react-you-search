@@ -83,8 +83,10 @@ const ModalFavourite = React.memo( ({isAdd=true, onIsModalShow, onDispatchFavour
                                 className={cn({ 'selected': selected})}
                             >
                             <option className="input-disabled" disabled value="">Сортировать по</option>
-                            <option value="name">По имени</option>
+                            <option value="name">По названию</option>
                             <option value="date">По дате</option>
+                            <option value="rating">По рейтингу</option>
+                            <option value="viewCount">По количеству просмотров</option>
                         </select>
                     </div>
                     <div className="form__input">
