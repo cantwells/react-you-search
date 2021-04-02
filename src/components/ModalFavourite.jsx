@@ -32,6 +32,12 @@ const ModalFavourite = React.memo( ({isAdd=true, onIsModalShow, onDispatchFavour
         formRef.current.reset();
         onIsModalShow(false);
     }
+    //При ререндеренге записывать данные в об типе сортировке
+    React.useEffect(() => {
+        if(queryData?.sort){
+            setSelected(queryData?.sort)
+        }
+    }, [queryData])
 
     //Функция обработки при отправке формы
     const onSubmit = data => {
@@ -49,6 +55,8 @@ const ModalFavourite = React.memo( ({isAdd=true, onIsModalShow, onDispatchFavour
     }
     //состояние для выбора option в выпадающем списке
     const [selected, setSelected] = React.useState('')
+
+    //Обновление поля select
     const setChoose = (event) => setSelected( event.target.value );
     return (
         <div className={ cn('modal', 'overlay') }>
@@ -70,9 +78,9 @@ const ModalFavourite = React.memo( ({isAdd=true, onIsModalShow, onDispatchFavour
                     <div className="form__input">
                         <select name="sort" 
                                 ref={register}
-                                value={queryData?.sort || selected}
+                                value={selected}
                                 onChange={setChoose}
-                                className={cn({ 'selected': !!selected})}
+                                className={cn({ 'selected': selected})}
                             >
                             <option className="input-disabled" disabled value="">Сортировать по</option>
                             <option value="name">По имени</option>
