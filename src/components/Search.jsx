@@ -20,7 +20,8 @@ const Search = React.memo(() => {
     const [ modalShow, setModalShow ] = React.useState(false);
     //отображать/скрывать модалку для перехода на избранное
     const [ isShowInfoModal, setIsShowInfoModal ] = React.useState(false);
-
+    //создаём реф для возможности отключать таймаут из другой функции
+    const clearModal = React.useRef();
     //проверка вводимой строки на наличие в избранном
     const isFavourite = () => {
         return !!favourites.find( item => item.request === value );
@@ -34,13 +35,14 @@ const Search = React.memo(() => {
     //Обработчик для отображения модального окна с преходом в избранное
     const handleShowInfoModal = () => {
         setIsShowInfoModal(true);
-        // clearModal = setTimeout(() => {
-        //     setModalFavourite(false);
-        // }, 3600)
+        clearModal.current = setTimeout(() => {
+            setIsShowInfoModal(false);
+        }, 3600)
     }
     //Обработчик для скрытия модального окна
     const handleHideInfoModal = () => {
-        setIsShowInfoModal(false);
+        clearTimeout( clearModal.current );
+        // setIsShowInfoModal(false);
     };
 
     //Обработчик отправки формы в поисковой строке
