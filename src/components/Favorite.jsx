@@ -1,7 +1,9 @@
 import React from 'react'
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from 'react-router-dom';
 import { ModalFavourite } from '.';
 import { delFavourite, editFavourite } from "../redux/slices/favouriteSlice";
+import { fetchVideosByQuery } from '../redux/slices/searchSlice';
 
 let favouriteItem = {}
 const Favourite = () => {
@@ -9,6 +11,7 @@ const Favourite = () => {
     const [ isModalShow, setIsModalShow ] = React.useState(false);
     
     const dispatch = useDispatch();
+    const history = useHistory();
 //     //получаем все избранные
     const items = useSelector(({favourites}) => favourites.items);
     //удалить избраное
@@ -33,18 +36,23 @@ const Favourite = () => {
         dispatch(editFavourite(obj));
     }
 
+    const handleShowFavourite = ( request, amount, sort )  => {
+        dispatch( fetchVideosByQuery({request, amount, sort }));
+        history.push('/');
+    }
+
     return (
         <>
             <main className="main main-favourits">
                 <h2>Избранное</h2>
                 <div className="favourits">
                     {
-                        items.map( item => (
-                            <div className="item" key={ `${item.request}-${new Date().getTime()}` }>
-                                <div className="item__title"><span className="text__cursor">{item.request}</span></div>
+                        items.map( ({id, request, sort, amount}) => (
+                            <div className="item" key={ `${request}-${new Date().getTime()}` }>
+                                <div className="item__title"><span className="text__cursor" onClick={() => handleShowFavourite(request, amount, sort)}>{request}</span></div>
                                 <div className="item__edit">
-                                    <span onClick={() => getFavourite(item.id)}>Изменить</span>
-                                    <span className="item__edit-del" onClick={ () => delFavouriteByID(item.id) }>Удалить</span>
+                                    <span onClick={() => getFavourite(id)}>Изменить</span>
+                                    <span className="item__edit-del" onClick={ () => delFavouriteByID(id) }>Удалить</span>
                                 </div>
                             </div>
                         ))
