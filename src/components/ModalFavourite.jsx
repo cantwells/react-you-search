@@ -46,7 +46,7 @@ const ModalFavourite = React.memo( ({isAdd=true, onIsModalShow, onDispatchFavour
     }
 
     //Состояние для значения инпута range
-    const [ value, setValue ] = React.useState(queryData?.ranger || 25);
+    const [ value, setValue ] = React.useState(queryData?.amount || 25);
     //Обработчик изменения инпута range
     const handleChange = (event) => {
         setValue(event.target.value);
@@ -83,7 +83,7 @@ const ModalFavourite = React.memo( ({isAdd=true, onIsModalShow, onDispatchFavour
                                 className={cn({ 'selected': selected})}
                             >
                             <option className="input-disabled" disabled value="">Сортировать по</option>
-                            <option value="name">По названию</option>
+                            <option value="title">По названию</option>
                             <option value="date">По дате</option>
                             <option value="rating">По рейтингу</option>
                             <option value="viewCount">По количеству просмотров</option>
@@ -92,7 +92,7 @@ const ModalFavourite = React.memo( ({isAdd=true, onIsModalShow, onDispatchFavour
                     <div className="form__input">
                         <p>Максимальное количество</p>
                         <div className="range-block">
-                            <input name="ranger" type="range" min="0" max="50" value={value} step="1" className="ranger" onChange={handleChange} ref={register} />
+                            <input name="amount" type="range" min="0" max="50" value={value} step="1" className="ranger" onChange={handleChange} ref={register} />
                             <span className="range-result">{value}</span>    
                         </div>
                     </div>
