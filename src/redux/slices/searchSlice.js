@@ -16,6 +16,7 @@ const searchSlice = createSlice({
         isLoaded: false,
         videos: [],
         totalResult: 0,
+        request: "",
         isGrid: true,
     },
     reducers: {
@@ -31,7 +32,7 @@ const searchSlice = createSlice({
         [fetchVideosByQuery.fulfilled]: (state, action) => {
             state.videos = action.payload.items;
             state.totalResult = action.payload.pageInfo.totalResults;
-
+            state.request = action.meta.arg.request;
         }
     }
 })
