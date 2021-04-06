@@ -2,13 +2,13 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, DisplayGrid, DisplayList, EmptySearch, ModalFavourite, InfoModal } from '.';
 import cn from 'classnames';
-import { fetchVideosByQuery, setIsGrid } from '../redux/slices/searchSlice';
+import { fetchVideosByQuery, setIsGrid, setIsLoaded } from '../redux/slices/searchSlice';
 import { addFavourite } from '../redux/slices/favouriteSlice';
 
 const Search = React.memo(() => {
     const dispatch = useDispatch();
     //получить данные из стейта
-    const {videos, totalResult, request, isGrid} = useSelector(({search}) => search);
+    const {videos, totalResult, request, isGrid, isLoaded} = useSelector(({search}) => search);
     const favourites = useSelector(({favourites}) => favourites.items);
 
     //Получение данных из поисковой строки
@@ -46,6 +46,7 @@ const Search = React.memo(() => {
     //Обработчик отправки формы в поисковой строке
     const handleSubmit = (event) => {
         if( value ) {
+            dispatch(setIsLoaded(false));
             dispatch( fetchVideosByQuery({request: value}));
         }
         event.preventDefault();
@@ -113,8 +114,8 @@ const Search = React.memo(() => {
                             </div>
                             {
                                 isGrid 
-                                ? <DisplayGrid items={videos} />
-                                : <DisplayList items={videos} />
+                                ? <DisplayGrid items={videos} isLoaded={isLoaded} />
+                                : <DisplayList items={videos} isLoaded={isLoaded} />
                             }
                         </section>
                     </main>

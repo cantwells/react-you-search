@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import helper from '../helper';
+import { ListLoader } from '.';
 
-const DisplayList = React.memo( ({items}) => {
+const DisplayList = React.memo( ({items, isLoaded}) => {
     return (
         <div className="result__clips-list">
             {
                 items.map( ({id, snippet}) =>  {
+                    if( !isLoaded ) return <ListLoader/>
                     return(
                         <div className="item" key={id.videoId}>
                             <div className="item__screen">
