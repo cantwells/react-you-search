@@ -28,7 +28,7 @@ const searchSlice = createSlice({
             state.totalResult = 0;
         },
         setIsLoaded( state, action ){
-            state.isLoaded = action.payload.isLoaded;
+            state.isLoaded = action.payload;
         }
     },
     extraReducers: {
@@ -36,6 +36,7 @@ const searchSlice = createSlice({
             state.videos = action.payload.items;
             state.totalResult = action.payload.pageInfo.totalResults;
             state.request = action.meta.arg.request;
+            state.isLoaded = true;
         }
     }
 })
