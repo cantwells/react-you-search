@@ -1,12 +1,14 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { GridLoader } from '.';
 import helper from '../helper';
 
-const DisplayGrid = React.memo( ({ items }) => {
+const DisplayGrid = React.memo( ({ items, isLoaded }) => {
     return (
         <div className="result__clips-grid">
             {
                 items.map( ({id, snippet}) =>  {
+                    if( !isLoaded ) return <GridLoader/>
                     return(
                         <div className="item" key={id.videoId}>
                             <div className="item__screen">
@@ -26,6 +28,7 @@ const DisplayGrid = React.memo( ({ items }) => {
                             </a>
                         </div>
                     )
+                    
                 })
             }
         </div>

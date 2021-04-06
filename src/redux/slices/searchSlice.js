@@ -26,6 +26,9 @@ const searchSlice = createSlice({
         resetVideos( state ){
             state.videos = [];
             state.totalResult = 0;
+        },
+        setIsLoaded( state, action ){
+            state.isLoaded = action.payload;
         }
     },
     extraReducers: {
@@ -33,8 +36,9 @@ const searchSlice = createSlice({
             state.videos = action.payload.items;
             state.totalResult = action.payload.pageInfo.totalResults;
             state.request = action.meta.arg.request;
+            state.isLoaded = true;
         }
     }
 })
-export const { setIsGrid, resetVideos } = searchSlice.actions;
+export const { setIsGrid, resetVideos, setIsLoaded } = searchSlice.actions;
 export default searchSlice.reducer; 
