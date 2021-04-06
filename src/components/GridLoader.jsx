@@ -5,7 +5,6 @@ const GridLoader = () => (
     speed={2}
     width={245}
     height={220}
-    // viewBox="0 0 245 220"
     backgroundColor="#e6e6e6"
     foregroundColor="#ecebeb"
     >
