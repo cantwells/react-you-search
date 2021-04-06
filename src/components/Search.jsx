@@ -38,10 +38,10 @@ const Search = React.memo(() => {
         }, 3600)
     }
     //Обработчик для скрытия модального окна
-    const handleHideInfoModal = () => {
+    const handleHideInfoModal = React.useCallback(() => {
         clearTimeout( clearModal.current );
         // setIsShowInfoModal(false);
-    };
+    },[]);
 
     //Обработчик отправки формы в поисковой строке
     const handleSubmit = (event) => {
