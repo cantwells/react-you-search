@@ -16,7 +16,7 @@ const store = configureStore({
 store.subscribe( () => {
     if( store.getState().login.isAuthorized ){
         const serializedData = helper.utf8_to_b64(JSON.stringify(store.getState().login));
-        browserStorage.saveData(serializedData);
+        browserStorage.saveData('token', serializedData);
     }
 } )
 

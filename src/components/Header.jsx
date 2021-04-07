@@ -25,7 +25,7 @@ const Header = React.memo(() => {
     const handleLogOut = () => {
         dispatch(logOut());
         dispatch(resetVideos());
-        browserStorage.removeData();
+        browserStorage.removeData('token');
     } 
 
     if ( menuLink.includes( location.pathname ) ){
