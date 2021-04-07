@@ -67,7 +67,7 @@ const Search = React.memo(() => {
 
     return (
         <>
-            {(videos.length) 
+            {(videos?.length) 
                 ?   <main className="main">
                         <h2>Поиск видео</h2>
                         <section className="search">

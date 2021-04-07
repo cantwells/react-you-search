@@ -17,6 +17,8 @@ store.subscribe( () => {
     if( store.getState().login.isAuthorized ){
         const serializedData = helper.utf8_to_b64(JSON.stringify(store.getState().login));
         browserStorage.saveData('token', serializedData);
+        const serializedDataSearch = helper.utf8_to_b64(JSON.stringify(store.getState().search));
+        browserStorage.saveData('data', serializedDataSearch);
     }
 } )
 
