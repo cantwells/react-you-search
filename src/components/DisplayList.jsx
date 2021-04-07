@@ -8,7 +8,7 @@ const DisplayList = React.memo( ({items, isLoaded}) => {
         <div className="result__clips-list">
             {
                 items.map( ({id, snippet}) =>  {
-                    if( !isLoaded ) return <ListLoader/>
+                    if( !isLoaded ) return <ListLoader key={id.videoId}/>
                     return(
                         <div className="item" key={id.videoId}>
                             <div className="item__screen">

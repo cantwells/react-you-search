@@ -8,7 +8,7 @@ const DisplayGrid = React.memo( ({ items, isLoaded }) => {
         <div className="result__clips-grid">
             {
                 items.map( ({id, snippet}) =>  {
-                    if( !isLoaded ) return <GridLoader/>
+                    if( !isLoaded ) return <GridLoader key={id.videoId}/>
                     return(
                         <div className="item" key={id.videoId}>
                             <div className="item__screen">
