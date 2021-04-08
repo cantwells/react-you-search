@@ -17,10 +17,11 @@ const helper = {
         const target = event.target;
         target.style.background = 'linear-gradient(to right, #1390E5 0%, #1390E5 ' + ( target.value * 2) + '%, #EAEAEA ' +  ( target.value * 2) + '%, #EAEAEA 100%)'
     },
-    logIn: ( credentials ) => {
+    logIn: ( credentials, users ) => {
         const { username, password } = credentials;
         return new Promise( ( resolve, reject ) => {
-            if( username === 'Admin' && password === '12345' ){
+            const user =  users.find( item => item.username === username);
+            if(  user && user.password === password ){
                 resolve({username});
             }else{
                 reject("Не верный логин или пароль!");
