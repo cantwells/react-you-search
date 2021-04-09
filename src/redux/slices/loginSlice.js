@@ -30,7 +30,8 @@ export const fetchUsers = createAsyncThunk(
 //получаем данные из localStorage
 const data = browserStorage.getData('token');
 //Либо декодируем в объект либо присваиваем пустой объект, которые потом передаём в качестве initialState
-const persistedState = Object.keys(data).length ? JSON.parse(helper.b64_to_utf8(data)) : {};
+// const persistedState = Object.keys(data).length ? JSON.parse(helper.b64_to_utf8(data)) : {};
+const persistedState = Object.keys(data).length ? JSON.parse(data) : {};
 
 const loginSlice = createSlice({
     name: 'login',

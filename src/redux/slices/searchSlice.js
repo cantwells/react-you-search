@@ -1,12 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import browserStorage from "../../browserStorage";
-import helper from "../../helper";
+// import helper from "../../helper";
 import API from "../dal/api";
 
 //получаем данные из localStorage
 const data = browserStorage.getData('data');
 //Либо декодируем в объект либо присваиваем пустой объект, которые потом передаём в качестве initialState
-const persistedState = Object.keys(data).length ? JSON.parse(helper.b64_to_utf8(data)) : {};
+// const persistedState = Object.keys(data).length ? JSON.parse(helper.b64_to_utf8(data)) : {};
+const persistedState = Object.keys(data).length ? JSON.parse(data) : {};
 
 //thunk для получения видео с сервера
 export const fetchVideosByQuery = createAsyncThunk(
