@@ -1,0 +1,29 @@
+.player-wrapper {
+    position: relative;
+    padding-top: 56.25%; /* Player ratio: 100 / (1280 / 720) */
+}
+
+.react-player {
+    position: absolute;
+    top: 20px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-width:850px;
+    max-height:480px;
+    margin: auto;
+}
+
+.previous {
+    position: absolute;
+    top: 10px;
+    left: 10%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    transition: all 0.3s;
+
+    &:hover {
+        transform: scale(1.1);
+    }
+}

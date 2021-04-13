@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { GridLoader } from '.';
 import helper from '../helper';
 
@@ -8,21 +9,19 @@ const DisplayGrid = React.memo( ({ items, isLoaded }) => {
         <div className="result__clips-grid">
             {
                 items.map( ({id, snippet}) =>  {
-                    if( !isLoaded ) return <GridLoader/>
+                    if( !isLoaded ) return <GridLoader key={id.videoId}/>
                     return(
                         <div className="item" key={id.videoId}>
                             <div className="item__screen">
                                 <img src={snippet.thumbnails.medium.url} alt="video-screen"/>
                             </div>
-                            <a className="item__link-title" href={`https://www.youtube.com/watch?v=${id.videoId}`} target="_blank" rel="noreferrer">
+                            <Link className="item__link-title" to={`/video/${id.videoId}`}>
                                 <div className="item__title trims" title={snippet.title.replace(/&quot;/g, '"')}>
-                                    {/* {snippet.title.replace(/&quot;/g, '"')} */}
                                     {helper.asynizer(snippet.title)}
                                 </div>
-                            </a>
+                            </Link>
                             <a className="item__link-channel" href={`https://www.youtube.com/channel/${snippet.channelId}`} target="_blank" rel="noreferrer">
                                 <div className="item__channel trim">
-                                    {/* {snippet.channelTitle.replace(/&quot;/g, '"')} */}
                                     {helper.asynizer(snippet.channelTitle)}
                                 </div>
                             </a>

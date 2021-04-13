@@ -1,7 +1,7 @@
 const browserStorage = {
-    getData: () => {
+    getData: (key) => {
         try{
-            const serializeDate = localStorage.getItem('token');
+            const serializeDate = localStorage.getItem(key);
             if(serializeDate){
                 return JSON.parse(serializeDate);
             }
@@ -11,17 +11,17 @@ const browserStorage = {
         }
     },
     
-    saveData: ( obj ) => {
+    saveData: ( key, obj ) => {
         try{
-            localStorage.setItem('token', JSON.stringify(obj))
+            localStorage.setItem(key, JSON.stringify(obj))
         }catch(err){
             console.error(err);
         }
     },
     
-    removeData: () => {
+    removeData: (key) => {
         try{
-            localStorage.removeItem('token')
+            localStorage.removeItem(key)
         }catch(err){
             console.error(err);
         }
