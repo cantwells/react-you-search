@@ -11,3 +11,4 @@ export { default as EmptySearch } from './EmptySearch';
 export { default as Login } from './Login';
 export { default as Nomatch } from './Nomatch';
 export { default as InfoModal } from './InfoModal';
+export { default as Player } from './Player';
