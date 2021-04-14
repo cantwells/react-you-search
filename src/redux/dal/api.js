@@ -8,6 +8,10 @@ const API = {
     },
     getViewCount: ( videoId ) => {
         return axios.get(`${URI}videos?part=statistics&id=${videoId}&key=${API_KEY}`);
+    },
+    getUsers: async() => {
+        const response = await axios.get('data/credentials.json');
+        return response.data;
     }
 }
 
