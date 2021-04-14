@@ -3,7 +3,8 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchLogin, fetchUsers, resetError } from '../redux/slices/loginSlice';
+// import { fetchLogin, fetchUsers, resetError } from '../redux/slices/loginSlice';
+import { fetchLogin, resetError } from '../redux/slices/loginSlice';
 import { Redirect } from 'react-router';
 
 const schema = yup.object().shape({
@@ -27,10 +28,10 @@ const Login = React.memo(() => {
         setIsHide( !isHide );
     }
     //При первой загрузке получаем список разрешенных пользователей
-    React.useEffect( () => {
-        dispatch(fetchUsers());
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[])
+    // React.useEffect( () => {
+    //     dispatch(fetchUsers());
+    //     // eslint-disable-next-line react-hooks/exhaustive-deps
+    // },[])
 
     React.useEffect( () => {
         //При появления ошибок из стейта, добавляем их в форму react-hook-form

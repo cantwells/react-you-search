@@ -6,22 +6,12 @@ import API from "../dal/api";
 //thunk для проверки авторизационных данных
 export const fetchLogin = createAsyncThunk(
     'login/fetchLogin',
-    async ( credentials, thunkAPI ) => {
-        const users = thunkAPI.getState().login.users
+    async ( credentials ) => {
         try{
+            const response = await API.getUsers();
+            const users = response.users;
             return await helper.logIn(credentials, users);
         }catch(err){
-            throw err;
-        }
-    }
-)
-
-export const fetchUsers = createAsyncThunk(
-    'login/fetchUsers',
-    async () => {
-        try{
-            return await API.getUsers();
-        }catch( err ){
             throw err;
         }
     }
@@ -62,12 +52,6 @@ const loginSlice = createSlice({
         [fetchLogin.rejected]: ( state, action ) => {
             state.error = action.error.message;
         },
-        [fetchUsers.fulfilled]: ( state, action ) => {
-            state.users = action.payload.users;
-        },
-        [fetchUsers.rejected]: (state, action) => {
-            state.error = action.error.message;
-        }
     }
 })
 
