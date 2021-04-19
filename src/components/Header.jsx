@@ -1,8 +1,9 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import browserStorage from '../browserStorage';
 import { logOut } from '../redux/slices/loginSlice';
+import { resetVideos } from '../redux/slices/searchSlice';
 
 const menus = ['Поиск', 'Избранное'];
 const menuLink = ['/', '/favourite'];
@@ -10,6 +11,8 @@ const menuLink = ['/', '/favourite'];
 const Header = React.memo(() => {
     const location = useLocation();
     const dispatch = useDispatch();
+
+    const user = useSelector( ({login}) => login.user );
     
     const [activeMenu, setActiveMenu] = React.useState('/');
     React.useEffect(() => {
@@ -22,6 +25,7 @@ const Header = React.memo(() => {
     }
     
     const handleLogOut = () => {
+        dispatch(resetVideos());
         dispatch(logOut());
         browserStorage.removeData('token');
     } 
@@ -49,7 +53,10 @@ const Header = React.memo(() => {
                                                     ><Link to={menuLink[idx]}>{item}</Link></li> )}
                     </ul>
                 </nav>
-                <div className="logout" onClick={() => handleLogOut()}>Выйти</div>
+                <div className="right">
+                    {user && <span className="username">{user}</span>}
+                    <span className="logout" onClick={() => handleLogOut()}>Выйти</span>
+                </div>
             </header>
         );
     }else{
