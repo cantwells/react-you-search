@@ -8,8 +8,11 @@ export const fetchLogin = createAsyncThunk(
     'login/fetchLogin',
     async ( credentials ) => {
         try{
+            //Получаем объект с разрешенными учётными данными
             const response = await API.getUsers();
             const users = response.users;
+            //Передаем учётные данные возвращенные из формы и разрешенные учётные данные для проверки
+            //авторизации
             return await helper.logIn(credentials, users);
         }catch(err){
             throw err;
@@ -19,9 +22,9 @@ export const fetchLogin = createAsyncThunk(
 
 //получаем данные из localStorage
 const data = browserStorage.getData('token');
-//Либо декодируем в объект либо присваиваем пустой объект, которые потом передаём в качестве initialState
-// const persistedState = Object.keys(data).length ? JSON.parse(helper.b64_to_utf8(data)) : {};
-const persistedState = Object.keys(data).length ? JSON.parse(data) : {};
+//Либо сохраняем в десериализованный объект либо присваиваем пустой объект,
+// которые потом передаём в качестве initialState
+const persistedState = Object.keys(data).length ? data : {};
 
 const loginSlice = createSlice({
     name: 'login',
