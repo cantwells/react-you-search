@@ -2,18 +2,32 @@ import React from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from 'react-router-dom';
 import { ModalFavourite } from '.';
-import { delFavourite, editFavourite } from "../redux/slices/favouriteSlice";
+import browserStorage from '../browserStorage';
+import { delFavourite, editFavourite, setLocalFavouriteItems } from "../redux/slices/favouriteSlice";
 import { fetchVideosByQuery } from '../redux/slices/searchSlice';
 
 let favouriteItem = {}
 const Favourite = () => {
+    const dispatch = useDispatch();
+    const history = useHistory();
+
     // отображать/скрывать форму
     const [ isModalShow, setIsModalShow ] = React.useState(false);
     
-    const dispatch = useDispatch();
-    const history = useHistory();
-//     //получаем все избранные
-    const items = useSelector(({favourites}) => favourites.items);
+    //получаем все избранные запросы
+    const items = useSelector(({favourites}) => favourites.favouriteItems);
+    //Получаем текущего пользователя
+    const user = useSelector( ({login}) => login.user );
+    //При загрузке страницы проверяем есть ли по текущему пользователю данные в LocalStorage
+    React.useEffect( () => {
+        //получаем данные из localStorage
+        const dataUser = browserStorage.getData(user);
+        //Если есть заливаем в стейт
+        if( Object.keys(dataUser).length ){
+            dispatch( setLocalFavouriteItems( dataUser.favouriteItems ) )
+        }
+    }, [user, dispatch] );
+
     //удалить избраное
     const delFavouriteByID = (id) => {
         dispatch( delFavourite({id}) );
@@ -35,7 +49,7 @@ const Favourite = () => {
     const handleEditFavourite = ( obj ) => {
         dispatch(editFavourite(obj));
     }
-
+    //Отображение видео по избранным запросам
     const handleShowFavourite = ( request, amount, sort )  => {
         dispatch( fetchVideosByQuery({request, amount, sort }));
         history.push('/');
