@@ -1,9 +1,10 @@
+import helper from "./helper";
+
 const browserStorage = {
     getData: (key) => {
         try{
-            const serializeDate = localStorage.getItem(key);
-            if(serializeDate){
-                return JSON.parse(serializeDate);
+            if(localStorage.getItem(key)){
+                return JSON.parse(helper.b64_to_utf8( localStorage.getItem(key) ));
             }
             return {}
         }catch(err){
@@ -12,8 +13,9 @@ const browserStorage = {
     },
     
     saveData: ( key, obj ) => {
+        const serializedObj = helper.utf8_to_b64(JSON.stringify(obj));
         try{
-            localStorage.setItem(key, JSON.stringify(obj))
+            localStorage.setItem(key, serializedObj)
         }catch(err){
             console.error(err);
         }
