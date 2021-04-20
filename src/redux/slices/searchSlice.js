@@ -1,13 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import browserStorage from "../../browserStorage";
-// import helper from "../../helper";
 import API from "../dal/api";
-
-//получаем данные из localStorage
-const data = browserStorage.getData('data');
-//Либо декодируем в объект либо присваиваем пустой объект, которые потом передаём в качестве initialState
-// const persistedState = Object.keys(data).length ? JSON.parse(helper.b64_to_utf8(data)) : {};
-const persistedState = Object.keys(data).length ? JSON.parse(data) : {};
 
 //thunk для получения видео с сервера
 export const fetchVideosByQuery = createAsyncThunk(
@@ -20,27 +12,39 @@ export const fetchVideosByQuery = createAsyncThunk(
 
 const searchSlice = createSlice({
     name: 'search',
-    // initialState: {
-    //     isLoaded: false,
-    //     videos: [],
-    //     totalResult: 0,
-    //     request: "",
-    //     isGrid: true,
-    // },
-    initialState: persistedState,
+    initialState: {
+        isLoaded: false,
+        videos: [],
+        totalResult: 0,
+        request: "",
+        isGrid: true,
+    },
     reducers: {
         setIsGrid( state, action ){
             state.isGrid = action.payload;
         },
         resetVideos( state ){
+            state.isLoaded = false;
             state.videos = [];
             state.totalResult = 0;
+            state.request = "";
+            state.isGrid = false;
         },
         setIsLoaded( state, action ){
             state.isLoaded = action.payload;
-        }
+        },
+        setLocalData( state, action ){
+            state.videos = action.payload.videos;
+            state.isGrid = action.payload.isGrid;
+            state.request = action.payload.request;
+            state.totalResult = action.payload.totalResult;
+            state.isLoaded = action.payload.isLoaded;
+        },
     },
     extraReducers: {
+        [fetchVideosByQuery.pending]: (state) => {
+            state.isLoaded = false;
+        },
         [fetchVideosByQuery.fulfilled]: (state, action) => {
             state.videos = action.payload.items;
             state.totalResult = action.payload.pageInfo.totalResults;
@@ -49,5 +53,5 @@ const searchSlice = createSlice({
         }
     }
 })
-export const { setIsGrid, resetVideos, setIsLoaded } = searchSlice.actions;
+export const { setIsGrid, resetVideos, setIsLoaded, setLocalData } = searchSlice.actions;
 export default searchSlice.reducer; 

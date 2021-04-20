@@ -1,27 +1,38 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import browserStorage from '../browserStorage';
+import { resetFavouritesItems } from '../redux/slices/favouriteSlice';
 import { logOut } from '../redux/slices/loginSlice';
-
+import { resetVideos } from '../redux/slices/searchSlice';
+//Доступные пункты меню
 const menus = ['Поиск', 'Избранное'];
+//Доступные сслыки
 const menuLink = ['/', '/favourite'];
 
 const Header = React.memo(() => {
     const location = useLocation();
     const dispatch = useDispatch();
-    
+
+    const user = useSelector( ({login}) => login.user );
+    //Задаем ссылку по умолчанию
     const [activeMenu, setActiveMenu] = React.useState('/');
+
     React.useEffect(() => {
+        //Получаем ссылку и возвращаем соответсвующий индекс из массива с сылками
         const initIdx = menuLink.indexOf(location.pathname);
+        //который потом и устанавливаем
         setActiveMenu(initIdx)
     }, [location.pathname])
-
+    //Оброботка при переключение пунктов меню
     const onChangeMenu = idx => {
         setActiveMenu(idx);
     }
-    
+    //Обработчик выхода из сессии
     const handleLogOut = () => {
+        //Сбрасываем все данные из состояний и удаляем токен
+        dispatch(resetVideos());
+        dispatch(resetFavouritesItems());
         dispatch(logOut());
         browserStorage.removeData('token');
     } 
@@ -49,7 +60,10 @@ const Header = React.memo(() => {
                                                     ><Link to={menuLink[idx]}>{item}</Link></li> )}
                     </ul>
                 </nav>
-                <div className="logout" onClick={() => handleLogOut()}>Выйти</div>
+                <div className="right">
+                    {user && <span className="username">{user}</span>}
+                    <span className="logout" onClick={() => handleLogOut()}>Выйти</span>
+                </div>
             </header>
         );
     }else{

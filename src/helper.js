@@ -26,7 +26,7 @@ const helper = {
         return new Promise( ( resolve, reject ) => {
             const user =  users.find( item => item.username === username);
             if(  user && this.b64_to_utf8(user.password) === password ){
-                resolve({username});
+                resolve(username);
             }else{
                 reject("Не верный логин или пароль!");
             }

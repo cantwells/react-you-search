@@ -3,7 +3,6 @@ import favourites from './slices/favouriteSlice';
 import search from './slices/searchSlice';
 import login from './slices/loginSlice';
 import browserStorage from '../browserStorage';
-// import helper from '../helper';
 
 const store = configureStore({
     reducer: {
@@ -12,17 +11,23 @@ const store = configureStore({
         login
     }
 })
-
+//Работаем с localStorage
 store.subscribe( () => {
+    //Если пользователь авторизировался сохраняем его учётные данные в localStorage
     if( store.getState().login.isAuthorized ){
-        // const serializedData = helper.utf8_to_b64(JSON.stringify(store.getState().login));
-        // browserStorage.saveData('token', serializedData);
-        const serializedData = JSON.stringify(store.getState().login);
-        browserStorage.saveData('token', serializedData);
-        // const serializedDataSearch = helper.utf8_to_b64(JSON.stringify(store.getState().search));
-        // browserStorage.saveData('data', serializedDataSearch);
-        const serializedDataSearch = JSON.stringify(store.getState().search);
-        browserStorage.saveData('data', serializedDataSearch);
+        browserStorage.saveData('token', store.getState().login);
+    }
+    //Если загружаются новые данные, то сохраняем их в localStorage
+    if( store.getState().search?.isLoaded ){
+        //Определяем под каким пользователем залогинены
+        const user = store.getState().login.user;
+        //Получаем данные поисковый запросов из состояния 
+        const search = store.getState().search;
+        //Получаем данные об избранных запросах из состояния
+        const favourites = store.getState().favourites;
+        //Делаем общий объект с данными и закидываем в localStorage, ключем является имя пользователя
+        const allData = Object.assign( {}, search, favourites );
+        browserStorage.saveData([user], allData);
     }
 } )
 
