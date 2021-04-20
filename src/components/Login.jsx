@@ -45,7 +45,7 @@ const Login = React.memo(() => {
         }
     }, [error, setError, dispatch])
 
-    //обработка отправки почты
+    //обработка отправки формы
     const onSubmit = (credentials ) => {
         dispatch( fetchLogin(credentials) );
         reset();
