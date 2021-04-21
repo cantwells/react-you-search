@@ -264,5 +264,20 @@
         color: #BBBBBB;
     }
 
-
+/* Slider rc-slider */
+.rc-slider{
+    &-track {
+        background-color: $siberian-blue;
+        height: 6px;
+    }
+    &-rail {
+        height: 6px;
+        background-color: #EAEAEA;
+    }
+    &-handle {
+        border-color: $siberian-blue;
+        height: 18px;
+        width: 18px;
+    }
+}
 }
