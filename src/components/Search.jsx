@@ -23,7 +23,6 @@ const Search = React.memo(() => {
         if( Object.keys(dataUser).length && !videos.length ){
             dispatch( setLocalData(dataUser) )
             dispatch( setLocalFavouriteItems( dataUser.favouriteItems ) )
-            console.log('Get local data');
         }
        // eslint-disable-next-line
     },[]);
