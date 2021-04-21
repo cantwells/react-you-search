@@ -36,7 +36,8 @@ const DisplayList = React.memo( ({items, isLoaded}) => {
 });
 
 DisplayList.propTypes = {
-    items: PropTypes.arrayOf( PropTypes.object )
+    items: PropTypes.arrayOf( PropTypes.object ),
+    isLoaded: PropTypes.bool
 }
 
 export default DisplayList;

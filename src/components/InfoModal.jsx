@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import cn from 'classnames'
+import cn from 'classnames';
+import PropTypes from 'prop-types';
 
 const InfoModal = React.memo(( {onHideModal, isShow} ) => {
     return (
@@ -10,5 +11,10 @@ const InfoModal = React.memo(( {onHideModal, isShow} ) => {
         </div>
     )
 });
+
+InfoModal.propTypes = {
+    isShow: PropTypes.bool,
+    onHideModal: PropTypes.func
+}
 
 export default InfoModal;
