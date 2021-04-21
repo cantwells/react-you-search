@@ -1,11 +1,12 @@
 import React from 'react'
 import cn from 'classnames';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 import { Button } from '.';
 import { useForm } from 'react-hook-form';
-import helper from '../helper';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
+import Slider from 'rc-slider';
+import 'rc-slider/assets/index.css';
 
 import nextId, {setPrefix} from "react-id-generator";
 setPrefix("");
@@ -20,13 +21,15 @@ const ModalFavourite = React.memo( ({isAdd=true, onIsModalShow, onDispatchFavour
                 .string()
                 .required('Обязательное поле!')
                 .min(3, 'Слишком короткое')
-    });
+            });
     //нужные инструменты из react-hook-form
     const { register, errors, handleSubmit } = useForm({
         resolver: yupResolver(schema)
     });
     //получаем реф на форму
     const formRef = React.useRef();
+    //Состояние для значения инпута range
+    const [ value, setValue ] = React.useState(queryData?.amount || 25);
     //функция скрытия модального окна
     const closeModal = () => {
         formRef.current.reset();
@@ -41,18 +44,16 @@ const ModalFavourite = React.memo( ({isAdd=true, onIsModalShow, onDispatchFavour
 
     //Функция обработки при отправке формы
     const onSubmit = data => {
+        data.amount = value;
         onDispatchFavourite(data);
         closeModal();
     }
 
-    //Состояние для значения инпута range
-    const [ value, setValue ] = React.useState(queryData?.amount || 25);
     //Обработчик изменения инпута range
-    const handleChange = (event) => {
-        setValue(event.target.value);
-        //функция для правильного отображения стилей
-        helper.multyColorRange(event);
+    const handleChange = (value) => {
+        setValue(value);
     }
+    
     //состояние для выбора option в выпадающем списке
     const [selected, setSelected] = React.useState('')
 
@@ -92,7 +93,8 @@ const ModalFavourite = React.memo( ({isAdd=true, onIsModalShow, onDispatchFavour
                     <div className="form__input">
                         <p>Максимальное количество</p>
                         <div className="range-block">
-                            <input name="amount" type="range" min="0" max="50" value={value} step="1" className="ranger" onChange={handleChange} ref={register} />
+                            {/* <input name="amount" type="range" min="0" max="50" value={value} step="1" className="ranger" onChange={handleChange} ref={register} /> */}
+                            <Slider name="amount" min={0} max={50} step={1} value={value} onChange={handleChange}/>
                             <span className="range-result">{value}</span>    
                         </div>
                     </div>
@@ -107,6 +109,7 @@ const ModalFavourite = React.memo( ({isAdd=true, onIsModalShow, onDispatchFavour
 })
 
 ModalFavourite.propTypes = {
+    isAdd: PropTypes.bool,
     queryData: PropTypes.object,
     onIsModalShow: PropTypes.func.isRequired,
     onDispatсhFavourite: PropTypes.func

@@ -74,11 +74,21 @@
         flex-wrap: wrap;
         column-gap: 20px;
 
+        @media screen and ( max-width: 1200px ){
+            justify-content: center;
+        }
         .item {
             max-width: 245px;
             font-size: 14px;
             line-height: 16px;
             margin-bottom: 20px;
+
+            @media screen and ( max-width: 1200px ){
+                max-width: 300px;
+            }
+            @media screen and ( max-width: 992px ){
+                max-width: 350px;
+            }
         }
     }
     .item {        

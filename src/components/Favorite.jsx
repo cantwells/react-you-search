@@ -23,10 +23,11 @@ const Favourite = () => {
         //получаем данные из localStorage
         const dataUser = browserStorage.getData(user);
         //Если есть заливаем в стейт
-        if( Object.keys(dataUser).length ){
+        if( Object.keys(dataUser).length && !items.length ){
             dispatch( setLocalFavouriteItems( dataUser.favouriteItems ) )
         }
-    }, [user, dispatch] );
+        // eslint-disable-next-line
+    }, [] );
 
     //удалить избраное
     const delFavouriteByID = (id) => {

@@ -35,7 +35,8 @@ const DisplayGrid = React.memo( ({ items, isLoaded }) => {
 });
 
 DisplayGrid.propTypes = {
-    items: PropTypes.arrayOf( PropTypes.object )
+    items: PropTypes.arrayOf( PropTypes.object ),
+    isLoaded: PropTypes.bool
 }
 
 export default DisplayGrid;
