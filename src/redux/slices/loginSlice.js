@@ -1,20 +1,22 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import {
+    createAsyncThunk,
+    createSlice
+} from "@reduxjs/toolkit";
 import browserStorage from "../../browserStorage";
 import helper from "../../helper";
-import API from "../dal/api";
+// import API from "../dal/api";
 
 //thunk для проверки авторизационных данных
 export const fetchLogin = createAsyncThunk(
     'login/fetchLogin',
-    async ( credentials ) => {
-        try{
-            //Получаем объект с разрешенными учётными данными
-            const response = await API.getUsers();
-            const users = response.users;
-            //Передаем учётные данные возвращенные из формы и разрешенные учётные данные для проверки
-            //авторизации
-            return await helper.logIn(credentials, users);
-        }catch(err){
+    async (credentials) => {
+        try {
+            //Получаем допустимые учётные данные из переменной среды
+            const data = JSON.parse(process.env.REACT_APP_CREDENTIALS);
+            // Передаем учётные данные возвращенные из формы и разрешенные учётные данные для проверки
+            // авторизации
+            return await helper.logIn(credentials, data.users);
+        } catch (err) {
             throw err;
         }
     }
@@ -35,28 +37,32 @@ const loginSlice = createSlice({
     // },
     initialState: persistedState,
     reducers: {
-        setAuthorized( state, action ){
+        setAuthorized(state, action) {
             state.isAuthorized = action.payload.isAuthorized;
         },
-        logOut(state){
+        logOut(state) {
             state.isAuthorized = false;
             state.user = {}
         },
-        resetError( state ){
+        resetError(state) {
             state.error = ""
         }
     },
     extraReducers: {
-        [fetchLogin.fulfilled]: ( state, action ) => {
+        [fetchLogin.fulfilled]: (state, action) => {
             state.isAuthorized = true;
             state.user = action.payload;
             state.error = "";
         },
-        [fetchLogin.rejected]: ( state, action ) => {
+        [fetchLogin.rejected]: (state, action) => {
             state.error = action.error.message;
         },
     }
 })
 
-export const { setAuthorized, logOut, resetError } = loginSlice.actions;
+export const {
+    setAuthorized,
+    logOut,
+    resetError
+} = loginSlice.actions;
 export default loginSlice.reducer;
