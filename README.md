@@ -1,5 +1,16 @@
-# React Youtube Searcher
+# Проект React Youtube Searcher
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Сервис для поиска видео с ютуба. Чтобы воспользоваться сервисом необходима авторизация: `Admin - 12345`. По запросу возвращается 12 видео. Есть два варианта просмотра полученных видео либо в виде списка или в виде карточек. Реализована возможность сохранять запросы. Где можно указать, чтоб видео были отсортированы или возвращалось их определенное количество.
 
-Default user: `Admin - 12345`
+**Стек:** HTML, SCSS, BEM, React, Redux Toolkit, Router, Axios, Youtube RestApi
+
+### Инструкция по запуску
+
+-   Скачать или клонировать проект
+-   Установить зависимости `npm install`
+-   Запустить в dev режиме `npm start`
+-   Запустить продакшн сборку проекта `npm run build`
+
+#### Посмотреть сайт:
+
+[https://cantwells.github.io/react-you-search/](https://cantwells.github.io/react-you-search/)
