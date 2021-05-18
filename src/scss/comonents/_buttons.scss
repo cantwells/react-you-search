@@ -27,6 +27,13 @@
         }
     }
 
+    &--save {
+        @media screen and (max-width: 576px){
+            margin-top: 1rem;
+            min-width: 100%;
+        }
+    }
+
     &--outline {
         background: $white;
         border: 1px solid $siberian-blue;

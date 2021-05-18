@@ -72,6 +72,10 @@
         border-radius: 10px;
         width: 510px;
 
+        @media screen and (max-width: 576px){
+            width: 90%;
+        }
+
         h4 {
             color: $dark;
         }
@@ -133,6 +137,10 @@
         .form__input {
             margin-bottom: 24px / 430px * 100%;
             position: relative;
+
+            @media screen and (max-width: 576px){
+                margin-bottom: 0.5rem;
+            }
 
             svg {
                 position: absolute;
@@ -220,6 +228,10 @@
         color: $dark;
         border: 1px solid rgba(23, 23, 25, 0.1);
         border-radius: 5px;
+
+        @media screen and (max-width: 576px){
+            padding: 5px 10px;
+        }
     }
 
     .button-block {
@@ -227,6 +239,11 @@
         justify-content: space-between;
         .button--fill {
             padding: 12px 55px;
+        }
+
+        @media screen and (max-width: 576px){
+            flex-direction: column;
+            align-items: center;
         }
     }
 
@@ -278,6 +295,9 @@
         border-color: $siberian-blue;
         height: 18px;
         width: 18px;
+    }
+    @media screen and (max-width: 576px){
+        width: 75%;
     }
 }
 }

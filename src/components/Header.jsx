@@ -61,8 +61,8 @@ const Header = React.memo(() => {
                     </ul>
                 </nav>
                 <div className="right">
-                    {user && <span className="username">{user}</span>}
-                    <span className="logout" onClick={() => handleLogOut()}>Выйти</span>
+                    {user && <div className="username">{user}</div>}
+                    <div className="logout" onClick={() => handleLogOut()}>Выйти</div>
                 </div>
             </header>
         );

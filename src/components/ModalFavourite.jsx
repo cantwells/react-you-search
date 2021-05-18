@@ -99,8 +99,8 @@ const ModalFavourite = React.memo( ({isAdd=true, onIsModalShow, onDispatchFavour
                         </div>
                     </div>
                     <div className="button-block">
-                        <Button type="button" className="button--outline" onClick={closeModal}>Не сохранять</Button>
-                        <Button type="submit" className="button--fill">Сохранять</Button>
+                        <Button type="button" className="button--outline button--save" onClick={closeModal}>Не сохранять</Button>
+                        <Button type="submit" className="button--fill button--save">Сохранять</Button>
                     </div>
                 </form>
             </div>
