@@ -91,6 +91,13 @@
             }
         }
     }
+
+    &__output {
+        @media screen and (max-width: 576px){
+            display: none;
+        }
+    }
+
     .item {        
         img {
             max-width: 100%;

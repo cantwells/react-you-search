@@ -4,7 +4,6 @@ const ListLoader = () => (
     <ContentLoader 
         speed={2}
         width={1000}
-        height={220}
         backgroundColor="#e6e6e6"
         foregroundColor="#ecebeb"
     >
