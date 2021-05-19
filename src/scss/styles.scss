@@ -1,6 +1,7 @@
 @import "./variables";
-@import "./lib/normalize";
 @import "./fonts";
+@import "./lib/normalize";
+@import "./lib/grid/custom-grid";
 @import "./comonents/all";
 
 body, html {
@@ -18,25 +19,30 @@ body, html {
     }
 }
 
+// .wrapper {
+//     max-width: 1060px;
+//     margin: 0 auto;
+
+//     @media screen and (max-width: 992px){
+//         max-width: 960px;
+//     }
+
+//     @media screen and (max-width: 768px){
+//         max-width: 720px;
+//     }
+
+//     @media screen and (max-width: 576px){
+//         max-width: 540px;
+//     }
+
+//     &__nomatch {
+//         margin-top: 10%;
+//     }
+// }
+
 .wrapper {
-    max-width: 1060px;
-    margin: 0 auto;
-
-    @media screen and (max-width: 992px){
-        max-width: 960px;
-    }
-
-    @media screen and (max-width: 768px){
-        max-width: 720px;
-    }
-
-    @media screen and (max-width: 576px){
-        max-width: 540px;
-    }
-
-    &__nomatch {
-        margin-top: 10%;
-    }
+    @include make-container();
+    @include make-max-width-container();
 }
 
 .gohome {
