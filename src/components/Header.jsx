@@ -28,6 +28,7 @@ const Header = React.memo(() => {
     const onChangeMenu = idx => {
         setActiveMenu(idx);
     }
+
     //Обработчик выхода из сессии
     const handleLogOut = () => {
         //Сбрасываем все данные из состояний и удаляем токен
@@ -40,7 +41,7 @@ const Header = React.memo(() => {
     if ( menuLink.includes( location.pathname ) ){
         return (
             <header className="header">
-                <nav className="nav">
+                <div className="logo">
                     <svg width="48" height="48" viewBox="0 0 88 88" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g clipPath="url(#clip0)">
                             <path fillRule="evenodd" clipRule="evenodd" d="M59.1488 43.5667L24.683 60.9559V79.399L59.1488 62.0098V43.5667Z" fill="#1390E5"/>
@@ -53,6 +54,8 @@ const Header = React.memo(() => {
                             </clipPath>
                         </defs>
                     </svg>
+                </div>
+                <nav className="nav">
                     <ul className="menu">
                         { menus.map( (item, idx) => <li key={item + idx} 
                                                         className={ idx === activeMenu ? 'active' : ''} 
@@ -60,9 +63,9 @@ const Header = React.memo(() => {
                                                     ><Link to={menuLink[idx]}>{item}</Link></li> )}
                     </ul>
                 </nav>
-                <div className="right">
-                    {user && <div className="username">{user}</div>}
-                    <div className="logout" onClick={() => handleLogOut()}>Выйти</div>
+                <div className="profile">
+                    {user && <div className="profile__username">{user}</div>}
+                    <div className="profile__logout" onClick={() => handleLogOut()}>Выйти</div>
                 </div>
             </header>
         );
