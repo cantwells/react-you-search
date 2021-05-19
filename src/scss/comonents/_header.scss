@@ -2,30 +2,19 @@
     color: $siberian-blue;
     font-size: 18px;
     line-height: 28px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0 20px;
     padding: 26px 0;
+    @extend .row;
+}
 
-    @media screen and (max-width: 992px){
-        font-size: 16px;
-        line-height: 24px;
-    }
-    @media screen and (max-width: 768px){
-        font-size: 14px;
-        line-height: 20px;
-    }
-
-    @media screen and (max-width: 768px){
-        font-size: 12px;
-        line-height: 16px;
-    }
+.logo {
+    text-align: center;
+    @include make-col(12);
 }
 
 .nav {
+    @include make-col(9);
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     .menu {
         display: flex;
         li {
@@ -56,24 +45,89 @@
     }
 }
 
-.username {
-    margin-right: 15px;
-    color: $black;
-}
-
-.logout {
-    color: $siberian-blue;
-    cursor: pointer;
-
-    @media screen and (max-width: 576px){
-        margin-top: 0.5rem;
+.profile {
+    @include make-col(3);
+    align-items: center;
+    @extend .row;
+    
+    @media screen and (max-width: 576px) {
+        flex-direction: column;
+    }
+    &__username {
+        @include make-col(12);
+        color: $black;
+    }
+    
+    &__logout {
+        color: $siberian-blue;
+        cursor: pointer;
+        @include make-col(12);
+        margin-top: 1rem;
     }
 }
 
-.right {
-    display: flex;
 
-    @media screen and (max-width: 576px) {
-        flex-direction: column;
+
+
+@include media-breakpoint-up(sm){
+    .logo {
+        @include make-col(1);
+    }
+    .nav {
+        @include make-col(7);
+        align-items: center;
+    }
+
+    .profile {
+        @include make-col(4);
+
+        &__username {
+            @include make-col(6);
+        }
+    
+        &__logout {
+            margin-top: 0;
+            @include make-col(6);
+        }
+    }
+
+}
+
+@include media-breakpoint-up(md){
+    .nav {
+        @include make-col(5);
+    }
+
+    .profile{
+        @include make-col-offset(3);
+        @include make-col(3);
+
+        &__username {
+            @include make-col(6);
+        }
+    
+        &__logout {
+            @include make-col(6);
+        }
+    }
+
+}
+
+@include media-breakpoint-up(lg){
+    .nav {
+        @include make-col(4);
+    }
+
+    .profile {
+        @include make-col-offset(5);
+        @include make-col(2);
+    }
+
+    &__username {
+        @include make-col(6);
+    }
+
+    &__logout {
+        @include make-col(6);
     }
 }
