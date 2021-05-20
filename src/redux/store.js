@@ -18,7 +18,7 @@ store.subscribe( () => {
         browserStorage.saveData('token', store.getState().login);
     }
     //Если загружаются новые данные, то сохраняем их в localStorage
-    if( store.getState().search?.isLoaded ){
+    if( store.getState().search?.isLoaded && store.getState().login.user ){
         //Определяем под каким пользователем залогинены
         const user = store.getState().login.user;
         //Получаем данные поисковый запросов из состояния 

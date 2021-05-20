@@ -10,6 +10,7 @@ const browserStorage = {
                     3. Парсим из  JSON
                 */
                 return JSON.parse(helper.b64_to_utf8( localStorage.getItem(key) ));
+                // return JSON.parse(localStorage.getItem(key));
             }
             return {}
         }catch(err){
@@ -24,6 +25,7 @@ const browserStorage = {
             3. Добавляем в localStorage
         */
         const serializedObj = helper.utf8_to_b64(JSON.stringify(obj));
+        // const serializedObj = JSON.stringify(obj);
         try{
             localStorage.setItem(key, serializedObj)
         }catch(err){

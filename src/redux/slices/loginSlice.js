@@ -1,7 +1,4 @@
-import {
-    createAsyncThunk,
-    createSlice
-} from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import browserStorage from "../../browserStorage";
 import helper from "../../helper";
 // import API from "../dal/api";
@@ -42,7 +39,7 @@ const loginSlice = createSlice({
         },
         logOut(state) {
             state.isAuthorized = false;
-            state.user = {}
+            state.user = null;
         },
         resetError(state) {
             state.error = ""
@@ -60,9 +57,5 @@ const loginSlice = createSlice({
     }
 })
 
-export const {
-    setAuthorized,
-    logOut,
-    resetError
-} = loginSlice.actions;
+export const { setAuthorized, logOut, resetError } = loginSlice.actions;
 export default loginSlice.reducer;
