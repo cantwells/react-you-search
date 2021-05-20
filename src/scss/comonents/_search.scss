@@ -140,37 +140,71 @@
 
     &__clips-list {
 
-        max-height: 540px;
-        overflow-y: auto;
-        /* Hide scrollbar for IE, Edge and Firefox */
-        -ms-overflow-style: none;  /* IE and Edge */
-        scrollbar-width: none;  /* Firefox */
+        // max-height: 540px;
+        // overflow-y: auto;
+        // /* Hide scrollbar for IE, Edge and Firefox */
+        // -ms-overflow-style: none;  /* IE and Edge */
+        // scrollbar-width: none;  /* Firefox */
 
-        /* Hide scrollbar for Chrome, Safari and Opera */
-        &::-webkit-scrollbar {
-            display: none;
-        }
+        // /* Hide scrollbar for Chrome, Safari and Opera */
+        // &::-webkit-scrollbar {
+        //     display: none;
+        // }
         
         .item {
-            display: flex;
-            max-width: 687px;
+            @extend .row;
+            // display: flex;
+            // max-width: 687px;
             line-height: 20px;
             margin-bottom: 32px / 1040px * 100%;
 
-            img {
-                min-width: 157px;
-                height: 88px;
+            &__screen {
+                text-align: center;
             }
-
             &__info {
-                margin-left: 20px / 1040px * 100%;
+                text-align: center;
             }
 
-            &__title {
-                margin-top: 0;
+            @include media-breakpoint-up(sm) {
+                &__screen {
+                    @include make-col(6);
+                }
+                &__info {
+                    @include make-col(6);
+                    text-align: left;
+                }
             }
+            @include media-breakpoint-up(md) {
+                &__screen {
+                    @include make-col(4);
+                }
+                &__info {
+                    @include make-col(7);
+                }
+            }
+            @include media-breakpoint-up(lg) {
+                &__screen {
+                    @include make-col(3);
+                }
+                &__info {
+                    @include make-col(6);
+                }
+            }
+            img {
+                max-width: 100%;
+                // height: 88px;
+            }
+
+            // &__info {
+            //     margin-left: 20px / 1040px * 100%;
+            // }
+
+            // &__title {
+            //     margin-top: 0;
+            // }
+
         }
     }
-
+    
 }
 

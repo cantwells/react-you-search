@@ -1,8 +1,8 @@
 import React from 'react';
-import { ListLoader } from '../components/';
 import { Link } from 'react-router-dom';
-import helper from '../helper';
 import PropTypes from 'prop-types';
+import { ListLoader } from '.';
+import helper from '../helper';
 
 export const DisplayListCard = ({id, snippet}) => {
 
@@ -17,6 +17,7 @@ export const DisplayListCard = ({id, snippet}) => {
         };
     });
 
+    
     return isLoaded 
     ? (
         <div className="item" key={id}>
@@ -41,6 +42,7 @@ export const DisplayListCard = ({id, snippet}) => {
 }
 
 DisplayListCard.propTypes = {
-    id: PropTypes.string,
-    snippet: PropTypes.object
+    id: PropTypes.string.isRequired,
+    // eslint-disable-next-line react/forbid-prop-types
+    snippet: PropTypes.object.isRequired
 }
