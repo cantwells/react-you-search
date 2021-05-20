@@ -7,42 +7,23 @@
     background: $white;
 
     .item {
-        display: flex;
-        padding: 14px 20px;
+        @extend .row;
+        padding: 14px 0;
         line-height: 20px;
         font-weight: 500;
 
         &__title {
-            width: 85%;
-            @media screen and (max-width: 992px) {
-                width: 80%;
-            }
-            @media screen and (max-width: 768px) {
-                width: 75%;
-            }
-            @media screen and (max-width: 576px) {
-                width: 60%;
-            }
+            @include make-col(6);
         }
         &__edit {
-            width: 15%;
-            display: flex;
-            justify-content: space-between;
-            opacity: 0;
+            @include make-col(6);
+            @extend .row;
+            opacity: 1;
             transition: opacity 0.5s;
-            @media screen and (max-width: 992px) {
-                width: 20%;
-            }
-            @media screen and (max-width: 768px) {
-                width: 25%;
-            }
-            @media screen and (max-width: 576px) {
-                width: 40%;
-            }
             span {
-                display: inline-block;
+                @include make-col(6);
                 color: $siberian-blue;
-                font-size: 0.875rem;
+                font-size: 1rem;
                 line-height: 20px;
                 font-weight: 400;
                 cursor: pointer;
@@ -50,7 +31,29 @@
                     color: #FF0000;
                 }
             }
-    
+        }
+        @include media-breakpoint-up(sm){
+            &__title {
+                @include make-col(8);
+            }
+            &__edit {
+                @include make-col(4);
+            }
+        }
+        @include media-breakpoint-up(lg){
+            &__title {
+                @include make-col(9);
+            }
+            &__edit {
+                @include make-col(3);
+            }
+        }
+    }
+    @media screen and (min-width: 768px){
+        .item {
+            &__edit {
+                opacity: 0;
+            }
         }
     }
 }
@@ -66,3 +69,4 @@
         cursor: pointer;
     }
 }
+
