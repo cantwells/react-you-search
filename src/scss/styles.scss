@@ -19,30 +19,12 @@ body, html {
     }
 }
 
-// .wrapper {
-//     max-width: 1060px;
-//     margin: 0 auto;
-
-//     @media screen and (max-width: 992px){
-//         max-width: 960px;
-//     }
-
-//     @media screen and (max-width: 768px){
-//         max-width: 720px;
-//     }
-
-//     @media screen and (max-width: 576px){
-//         max-width: 540px;
-//     }
-
-//     &__nomatch {
-//         margin-top: 10%;
-//     }
-// }
-
 .wrapper {
     @include make-container();
     @include make-max-width-container();
+    &__nomatch {
+        margin-top: 10%;
+    }
 }
 
 .gohome {
