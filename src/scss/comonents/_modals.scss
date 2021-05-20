@@ -142,6 +142,7 @@
                 margin-bottom: 0.5rem;
             }
 
+
             svg {
                 position: absolute;
                 top: 60%;
@@ -153,6 +154,14 @@
                 text-align: center;
                 color: red;
                 padding-top: 10px;
+            }
+        }
+
+        .button-block {
+            @media screen and (max-width: 576px){
+                .button--outline {
+                    order: 1;
+                }
             }
         }
     }
