@@ -1,6 +1,5 @@
 import { useSelector } from 'react-redux';
 import { Redirect, Route, Switch } from 'react-router-dom';
-import './App.css';
 import { Favourite, Header, Nomatch, Player, Search } from './components';
 
 function App() {
@@ -19,9 +18,8 @@ function App() {
           </Switch>
         </div>
       );
-  }else {
-    return <Redirect to="/login" />
   }
+  return <Redirect to="/login" /> 
 }
 
 export default App;
