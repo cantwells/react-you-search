@@ -13,4 +13,4 @@
 
 #### Посмотреть сайт:
 
-[https://cantwells.github.io/react-you-search/](https://cantwells.github.io/react-you-search/)
+[https://rjazantsev.github.io/react-you-search/](https://rjazantsev.github.io/react-you-search/)
