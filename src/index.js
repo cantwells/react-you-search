@@ -10,7 +10,7 @@ import { Login } from './components';
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <Router>
+      <Router basename={process.env.PUBLIC_URL}>
         <Switch>
           <Route path="/login" component={Login} />
           <Route path="/" component={App} />

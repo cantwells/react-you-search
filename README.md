@@ -10,3 +10,5 @@
 -   Установить зависимости `npm install`
 -   Запустить в dev режиме `npm start`
 -   Запустить продакшн сборку проекта `npm run build`
+
+[https://sergery.github.io/react-you-search/](https://sergery.github.io/react-you-search/)
