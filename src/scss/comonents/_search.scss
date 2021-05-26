@@ -43,6 +43,11 @@
             fill: $light-blue;
         }
     }
+    &__error {
+        margin: 1rem 0;
+        text-align: center;
+        color: red;
+    }
 }
 .result {
 

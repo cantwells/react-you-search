@@ -5,12 +5,13 @@ import cn from 'classnames';
 import { fetchVideosByQuery, setIsGrid, setLocalData } from '../redux/slices/searchSlice';
 import { addFavourite, setLocalFavouriteItems } from '../redux/slices/favouriteSlice';
 import browserStorage from '../browserStorage';
+import { Error } from './Error';
 
 const Search = React.memo(() => {
 
     const dispatch = useDispatch();
     //Получаем данные по запросу из стейта
-    const {videos, totalResult, request, isGrid, isLoaded} = useSelector(({search}) => search);
+    const {videos, totalResult, request, isGrid, isLoaded, error} = useSelector(({search}) => search);
     //Получаем избранные запросы
     const favourites = useSelector(({favourites}) => favourites.favouriteItems);
     //Получаем текущего пользователя
@@ -122,6 +123,7 @@ const Search = React.memo(() => {
                                     </svg>
                                 </div>
                             </div>
+                            { error && <Error text={error} /> }
                             {
                                 isGrid 
                                 ? <DisplayGrid items={videos} isLoaded={isLoaded} />
@@ -129,7 +131,11 @@ const Search = React.memo(() => {
                             }
                         </section>
                     </main>
-                : <EmptySearch value={value} onSubmit={handleSubmit} onGetValue={handleGetValue} />
+                : <EmptySearch value={value} 
+                                onSubmit={handleSubmit} 
+                                onGetValue={handleGetValue} 
+                                error={error} 
+                            />
             }
             {
                 modalShow && <ModalFavourite onIsModalShow={handleIsModalShow} 
