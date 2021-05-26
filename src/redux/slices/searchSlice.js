@@ -4,12 +4,17 @@ import API from "../dal/api";
 //thunk для получения видео с сервера
 export const fetchVideosByQuery = createAsyncThunk(
     'search/fetchVideosByQueries',
-    async (query) => {
+    async (query, thunkAPI) => {
         try {
             const response = await API.fetchVideos(query);
-            return response.data;
+            if( response.status === 200 ){
+                return response.data;
+            }
+            if( response.status === 400 ){
+                return thunkAPI.rejectWithValue( response.data )
+            }
         } catch (err) {
-            console.log(err);
+            throw Error(err.message);
         }
     }
 );
@@ -22,6 +27,7 @@ const searchSlice = createSlice({
         totalResult: 0,
         request: "",
         isGrid: true,
+        error: ""
     },
     reducers: {
         setIsGrid(state, action) {
@@ -46,15 +52,15 @@ const searchSlice = createSlice({
         [fetchVideosByQuery.pending]: (state) => {
             state.isLoaded = false;
         },
-        [fetchVideosByQuery.rejected]: (action) => {
-            console.log(action);
+        [fetchVideosByQuery.rejected]: (state, {error}) => {
+            state.error = error.message;
         },
         [fetchVideosByQuery.fulfilled]: (state, action) => {
-            console.log('action:', action);
             state.videos = action.payload.items;
             state.totalResult = action.payload.pageInfo.totalResults;
             state.request = action.meta.arg.request;
             state.isLoaded = true;
+            state.error = ""
         }
     }
 })
