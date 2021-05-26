@@ -12,9 +12,9 @@ function App() {
           <Header/>
           <Switch>
             <Route exact path="/" component={Search}/>
-            <Route path="/favourite" component={Favourite}/>
+            <Route exact path="/favourite" component={Favourite}/>
             <Route path="/video/:id" component={Player}/>
-            <Route path="*" component={Nomatch}/>
+            <Route component={Nomatch}/>
           </Switch>
         </div>
       );

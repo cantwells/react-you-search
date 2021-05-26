@@ -12,7 +12,7 @@ ReactDOM.render(
     <Provider store={store}>
       <Router basename={process.env.PUBLIC_URL}>
         <Switch>
-          <Route path="/login" component={Login} />
+          <Route exact path="/login" component={Login} />
           <Route path="/" component={App} />
         </Switch>
       </Router>
