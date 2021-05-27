@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import browserStorage from "../../browserStorage";
 import helper from "../../helper";
-// import API from "../dal/api";
 
 //thunk для проверки авторизационных данных
 export const fetchLogin = createAsyncThunk(

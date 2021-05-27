@@ -76,8 +76,9 @@ const Search = React.memo(() => {
         dispatch(addFavourite(data));
     }
 
+    if(error) return <Error text={error} /> 
     return (
-        <>
+        <>                            
             {(videos?.length) 
                 ?   <main className="main">
                         <h2>Поиск видео</h2>
@@ -123,7 +124,6 @@ const Search = React.memo(() => {
                                     </svg>
                                 </div>
                             </div>
-                            { error && <Error text={error} /> }
                             {
                                 isGrid 
                                 ? <DisplayGrid items={videos} isLoaded={isLoaded} />
