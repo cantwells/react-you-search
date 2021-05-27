@@ -43,11 +43,7 @@
             fill: $light-blue;
         }
     }
-    &__error {
-        margin: 1rem 0;
-        text-align: center;
-        color: red;
-    }
+
 }
 .result {
 
@@ -211,5 +207,19 @@
         }
     }
     
+}
+
+.error {
+    margin: 5rem 0;
+    text-align: center;
+    
+    p {
+        color: #f44336;
+    }
+
+    svg {
+        width: 15rem;
+        height: 15rem;
+    }
 }
 

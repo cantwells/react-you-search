@@ -15,6 +15,7 @@ const Header = React.memo(() => {
     const dispatch = useDispatch();
 
     const user = useSelector( ({login}) => login.user );
+    const error = useSelector( ({search}) => search.error );
     //Задаем ссылку по умолчанию
     const [activeMenu, setActiveMenu] = React.useState('/');
 
@@ -38,7 +39,7 @@ const Header = React.memo(() => {
         browserStorage.removeData('token');
     } 
 
-    if ( menuLink.includes( location.pathname ) ){
+    if ( menuLink.includes( location.pathname ) && !error ){
         return (
             <header className="header">
                 <div className="logo">
