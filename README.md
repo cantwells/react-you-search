@@ -12,4 +12,5 @@
 -   Запустить продакшн сборку проекта `npm run build`
 
 #### Посмотреть сайт:
-[https://sergery.github.io/react-you-search/](https://sergery.github.io/react-you-search/)
+
+[https://sergeless.github.io/react-you-search/](https://sergeless.github.io/react-you-search/)
