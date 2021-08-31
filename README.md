@@ -13,4 +13,4 @@
 
 #### Посмотреть сайт:
 
-[https://sergeless.github.io/react-you-search/](https://sergeless.github.io/react-you-search/)
+[https://webcraftt.github.io/react-you-search/](https://webcraftt.github.io/react-you-search/)
