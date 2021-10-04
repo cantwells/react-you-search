@@ -13,4 +13,4 @@
 
 #### Посмотреть сайт:
 
-[https://webcraftt.github.io/react-you-search/](https://webcraftt.github.io/react-you-search/)
+[https://maycraft.github.io/react-you-search/](https://maycraft.github.io/react-you-search/)
